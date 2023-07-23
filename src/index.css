@@ -2,14 +2,12 @@
 @tailwind components;
 @tailwind utilities;
 
-
-
-body{
+body {
   width: 100%;
-  min-height:100vh; 
+  min-height: 100vh;
   display: flex;
   flex-direction: column;
-  font-family: 'Montserrat', sans-serif;
+  font-family: "Montserrat", sans-serif;
 }
 
 /* width */
@@ -19,7 +17,7 @@ body{
 
 /* Track */
 ::-webkit-scrollbar-track {
-  background: rgb(254, 254, 254, .6);
+  background: rgb(254, 254, 254, 0.6);
 }
 
 /* Handle */
@@ -28,61 +26,119 @@ body{
   border-radius: 20px;
 }
 
-
-textarea:focus, input:focus, select:focus{
-    outline: none;
+textarea:focus,
+input:focus,
+select:focus {
+  outline: none;
 }
 
-.title{
-  font-family: 'Lora', serif;
+.title {
+  font-family: "Lora", serif;
 }
 
-.social-media-link svg{
+.social-media-link svg {
   width: auto;
   height: 2em;
 }
-.social-media-link svg path{
-  fill: #FEFEFE;
+.social-media-link svg path {
+  fill: #fefefe;
 }
 
-.success-icon svg, .error-icon svg{
+.success-icon svg,
+.error-icon svg {
   width: auto;
   height: 1.5em;
 }
-.success-icon svg path{
-  fill: #3DD598;
+.success-icon svg path {
+  fill: #3dd598;
 }
-.error-icon svg path{
-  fill: #FC5A5A;
+.error-icon svg path {
+  fill: #fc5a5a;
 }
 
-.shop-item svg{
+.shop-item svg {
   width: auto;
   height: 1em;
 }
-.shop-item svg path{
-  fill: #373D20;
+.shop-item svg path {
+  fill: #373d20;
 }
 
-.mode-icon svg{
+.mode-icon svg {
   width: auto;
   height: 1em;
 }
-.mode-icon svg path{
+.mode-icon svg path {
   fill: rgb(8, 8, 8, 0.6);
 }
 
-.grid-row-autofit{
-  grid-template-rows:  repeat(auto-fit, minmax(440px,1fr));
+.grid-row-autofit {
+  grid-template-rows: repeat(auto-fit, minmax(440px, 1fr));
 }
-.product-icon svg{
+.product-icon svg {
   width: auto;
   height: 1.2em;
 }
 
-.logo-icon svg path{
-  fill: #FEFEFE;
+.logo-icon svg path {
+  fill: #fefefe;
 }
+
+.nav-icon svg {
+  width: auto;
+  height: 1.2em;
+}
+.nav-icon svg path {
+  fill: #fefefe;
+}
+.nav-icon:hover svg path {
+  fill: #e8d9cd;
+}
+
+/* nav-toggle */
+.nav-toggle:checked ~ nav {
+  transform: scale(1, 1);
+}
+.nav-toggle:checked ~ nav .nav-item {
+  opacity: 1;
+}
+
+nav {
+  transform: scale(1, 0);
+  transform-origin: top;
+  transition: transform 0.2s ease-out;
+}
+nav .nav-item {
+  opacity: 0;
+}
+
+.bag-dropdown:hover #bag-list {
+  display: inline-block;
+}
+.wish-dropdown:hover #wish-list {
+  display: inline-block;
+}
+
+.delete-icon svg {
+  width: auto;
+  height: 1.2em;
+}
+.delete-icon svg path {
+  fill: rgb(113, 119, 68, 0.6);
+}
+.delete-icon:hover svg path {
+  fill: rgb(55, 61, 32, 0.8);
+}
+
+@media screen and (min-width: 720px) {
+  /* nav{
+    all: unset;
+  } */
+  nav .nav-item {
+    opacity: 1;
+  }
+}
+
 /* :root {
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;

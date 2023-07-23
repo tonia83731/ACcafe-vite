@@ -39,7 +39,7 @@ export default function NewsOption({onOptionsChange}) {
           id={item.id}
           value={item.id}
           defaultChecked={item.id === "all"}
-          onChange={onOptionsChange}
+          onChange={() => onOptionsChange?.(item.id)}
         />
         <label
           htmlFor={item.id}

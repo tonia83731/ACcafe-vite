@@ -12,7 +12,7 @@ const modeOptionsData = [
   },
 ];
 
-export default function ProductInteraction({ onProductChange }) {
+export default function ProductInteraction({ onModeChange, inputValue, onProductChange, onSearchSubmit }) {
   const modeOptionsItems = modeOptionsData.map((item) => {
     return (
       <div key={item.id}>
@@ -23,6 +23,7 @@ export default function ProductInteraction({ onProductChange }) {
           id={item.id}
           value={item.id}
           defaultChecked={item.id === "grid"}
+          onChange={() => onModeChange?.(item.id)}
         />
         <label
           htmlFor={item.id}
@@ -36,12 +37,13 @@ export default function ProductInteraction({ onProductChange }) {
   return (
     <div className="flex justify-between items-center">
       <div className="flex">{modeOptionsItems}</div>
-      <form action="" className="">
+      <form action="" className="" onSubmit={onSearchSubmit}>
         <input
           type="text"
           className="rounded border py-2 px-1 tablet:px-3"
           placeholder="Type to search product..."
-          onChange={onProductChange}
+          vale={inputValue}
+          onChange={(e) => onProductChange?.(e.target.value)}
         />
         <button className="ml-2 p-2 rounded bg-grullo-60 hover:drop-shadow-md hover:bg-grullo-100">
           Search

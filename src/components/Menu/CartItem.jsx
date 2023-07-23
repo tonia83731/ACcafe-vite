@@ -5,7 +5,7 @@ export default function CartItem(){
     <div className="flex justify-between items-center border-b-2 border-grullo-60 py-2 px-1">
       <div className="">
         <div className="text-lg">Yogurt with Bake Granola and Fruits</div>
-        <div className="flex justify-between">
+        <div className="flex justify-between items-center">
           <div className="">$200</div>
           <div className="w-2/4">
             <button className="text-lg">-</button>
