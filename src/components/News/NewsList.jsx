@@ -1,7 +1,15 @@
 import { dummyNewsData } from "../../data/NewsData";
 import Pagination from "../Others/Pagination";
 
-export default function NewsList({ props }) {
+export default function NewsList({
+  props,
+  onNewsModalClick,
+  numbers,
+  currentPage,
+  onNextClick,
+  onPrevClick,
+  onPageClick
+}) {
   return (
     <section id="news-list">
       <ul className="news-list">
@@ -13,6 +21,7 @@ export default function NewsList({ props }) {
             >
               <button
                 className="title font-bold text-lg text-start"
+                onClick={() => onNewsModalClick?.(item.id)}
                 // onClick={() => changeContent(item)}
               >
                 {item.title}
@@ -24,7 +33,14 @@ export default function NewsList({ props }) {
           );
         })}
       </ul>
-      <Pagination className="text-right" />
+      <Pagination
+        className="text-right"
+        numbers={numbers}
+        currentPage={currentPage}
+        onNextClick={onNextClick}
+        onPrevClick={onPrevClick}
+        onPageClick={onPageClick}
+      />
     </section>
   );
 }

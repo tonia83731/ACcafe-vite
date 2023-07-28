@@ -38,7 +38,7 @@ import { GreenBtn } from "../Others/Button"
 //   );
 // }
 
-export function ProductCardItem({prop}){
+export function ProductCardItem({ prop, onAddWishClick, isWish }) {
   return (
     <div className="rounded-lg drop-shadow-lg bg-white-100 h-[440px]">
       <img
@@ -56,7 +56,10 @@ export function ProductCardItem({prop}){
         </div>
         <div className="grid gap-4 grid-cols-4">
           <GreenBtn className="col-span-3">Add to Cart</GreenBtn>
-          <button className="rounded px-3 py-1 text-xs bg-grullo-100 text-white-60 hover:text-white-100 tablet:text-sm">
+          <button
+            className="rounded px-3 py-1 text-xs bg-grullo-100 text-white-60 hover:text-white-100 tablet:text-sm"
+            onClick={() => onAddWishClick?.(prop.id)}
+          >
             ❤
           </button>
         </div>
@@ -65,10 +68,10 @@ export function ProductCardItem({prop}){
   );
 }
 
-export default function ProductCard(){
-  const ProductCardList = dummyProductData.map((prop) => {
-    return <ProductCardItem prop={prop}/>
-  })
+export default function ProductCard({ props, onAddWishClick, isWish }) {
+  const ProductCardList = props.map((prop) => {
+    return <ProductCardItem prop={prop} onAddWishClick={onAddWishClick}/>;
+  });
 
   return (
     <div className="grid gap-4 grid-cols-[100%] py-4 grid-row-autofit tablet:grid-cols-2 breakpoint:grid-cols-3 desktop:grid-cols-4">

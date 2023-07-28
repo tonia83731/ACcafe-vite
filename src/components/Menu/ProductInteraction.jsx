@@ -42,7 +42,7 @@ export default function ProductInteraction({ onModeChange, inputValue, onProduct
           type="text"
           className="rounded border py-2 px-1 tablet:px-3"
           placeholder="Type to search product..."
-          vale={inputValue}
+          value={inputValue}
           onChange={(e) => onProductChange?.(e.target.value)}
         />
         <button className="ml-2 p-2 rounded bg-grullo-60 hover:drop-shadow-md hover:bg-grullo-100">

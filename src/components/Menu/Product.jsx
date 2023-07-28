@@ -12,25 +12,59 @@ export default function Product(){
   const [mode, setMode] = useState("grid")
   const [searchValue, setSearchValue] = useState("")
   const [productList, setProductList] = useState(dummyProductData)
+  const [currentPage, setCurrentPage] = useState(1);
+  const [isWish, setIsWish] = useState(false)
+
+   const productPerPage = 8;
+   const lastIndex = currentPage * productPerPage;
+   const firstIndex = lastIndex - productPerPage;
+   const product = productList.slice(firstIndex, lastIndex);
+   const npage = Math.ceil(productList.length / productPerPage);
+   const numbers = [...Array(npage + 1).keys()].slice(1);
   
+  // grid and list switch
   const handleModeChange = (id) => {
     // console.log(id)
     setMode(id)
   }
+
+  // search input
   const handleProductChange = (value) => {
-    setSearchInput(value)
+    console.log(value)
+   setSearchValue(value)
     // console.log(searchInput)
   }
-  const handleSearchSubmit = () => {
+  const handleSearchSubmit = (e) => {
     e.preventDefault();
+    if(searchValue === "") return
     const filterProduct = productList.filter((item) =>
-      item.name.toLowerCase().includes(searchValue)
+      item.name.toLowerCase().trim().includes(searchValue.toLowerCase().trim())
     );
     
-    if (filterProduct.length === 0) return setProductList(dummyProductData);
+    if (filterProduct.length === 0) return
+    setProductList(filterProduct);
     setSearchValue(""); 
-    return setProductList(filterProduct);
   }
+  // pagination button
+  const handleNextClick = () => {
+    if (currentPage !== 1) {
+      return setCurrentPage(currentPage - 1);
+    }
+  };
+  const handlePrevClick = () => {
+    if (currentPage !== npage) {
+      return setCurrentPage(currentPage + 1);
+    }
+  };
+  const handlePageClick = (page) => {
+    setCurrentPage(page);
+  };
+
+  // wish list here
+  const handleAddWishClick = (id) => {
+    console.log(id)
+  }
+
   // console.log(productList);
   return (
     <section id="product" className="mt-8 mb-12">
@@ -39,11 +73,35 @@ export default function Product(){
           <div className="title text-2xl font-bold mb-4 tablet:text-3xl">
             Product Menu
           </div>
-          <ProductInteraction onModeChange={handleModeChange} inputValue={searchValue} onProductChange={handleProductChange} onSearchSubmit={handleSearchSubmit}/>
-          {mode === "grid" ? <ProductCard /> : <ProductList />}
+          <ProductInteraction
+            onModeChange={handleModeChange}
+            inputValue={searchValue}
+            onProductChange={handleProductChange}
+            onSearchSubmit={handleSearchSubmit}
+          />
+          {mode === "grid" ? (
+            <ProductCard
+              props={product}
+              onAddWishClick={handleAddWishClick}
+              isWish={isWish}
+            />
+          ) : (
+            <ProductList
+              props={product}
+              onAddWishClick={handleAddWishClick}
+              isWish={isWish}
+            />
+          )}
           {/* <ProductCard /> */}
           {/* <ProductList /> */}
-          <Pagination className="text-center" />
+          <Pagination
+            className="text-center"
+            numbers={numbers}
+            currentPage={currentPage}
+            onNextClick={handleNextClick}
+            onPrevClick={handlePrevClick}
+            onPageClick={handlePageClick}
+          />
         </div>
       </div>
     </section>
