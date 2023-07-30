@@ -130,6 +130,8 @@ nav .nav-item {
   fill: rgb(55, 61, 32, 0.8);
 }
 
+
+
 @media screen and (min-width: 720px) {
   /* nav{
     all: unset;

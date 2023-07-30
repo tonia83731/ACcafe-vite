@@ -6,45 +6,45 @@ import Pagination from "../Others/Pagination";
 import { dummyProductData } from "../../data/ProductData";
 
 import { useState } from "react";
+import useCartContext from "../../hooks/useCartContext";
 
-
-export default function Product(){
-  const [mode, setMode] = useState("grid")
-  const [searchValue, setSearchValue] = useState("")
-  const [productList, setProductList] = useState(dummyProductData)
+export default function Product({ onAddWishClick, isWish }) {
+  console.log(useCartContext())
+  const [mode, setMode] = useState("grid");
+  const [searchValue, setSearchValue] = useState("");
+  const [productList, setProductList] = useState(dummyProductData);
   const [currentPage, setCurrentPage] = useState(1);
-  const [isWish, setIsWish] = useState(false)
 
-   const productPerPage = 8;
-   const lastIndex = currentPage * productPerPage;
-   const firstIndex = lastIndex - productPerPage;
-   const product = productList.slice(firstIndex, lastIndex);
-   const npage = Math.ceil(productList.length / productPerPage);
-   const numbers = [...Array(npage + 1).keys()].slice(1);
-  
+  const productPerPage = 8;
+  const lastIndex = currentPage * productPerPage;
+  const firstIndex = lastIndex - productPerPage;
+  const product = productList.slice(firstIndex, lastIndex);
+  const npage = Math.ceil(productList.length / productPerPage);
+  const numbers = [...Array(npage + 1).keys()].slice(1);
+
   // grid and list switch
   const handleModeChange = (id) => {
     // console.log(id)
-    setMode(id)
-  }
+    setMode(id);
+  };
 
   // search input
   const handleProductChange = (value) => {
-    console.log(value)
-   setSearchValue(value)
+    console.log(value);
+    setSearchValue(value);
     // console.log(searchInput)
-  }
+  };
   const handleSearchSubmit = (e) => {
     e.preventDefault();
-    if(searchValue === "") return
+    if (searchValue === "") return;
     const filterProduct = productList.filter((item) =>
       item.name.toLowerCase().trim().includes(searchValue.toLowerCase().trim())
     );
-    
-    if (filterProduct.length === 0) return
+
+    if (filterProduct.length === 0) return;
     setProductList(filterProduct);
-    setSearchValue(""); 
-  }
+    setSearchValue("");
+  };
   // pagination button
   const handleNextClick = () => {
     if (currentPage !== 1) {
@@ -62,8 +62,8 @@ export default function Product(){
 
   // wish list here
   const handleAddWishClick = (id) => {
-    console.log(id)
-  }
+    console.log(id);
+  };
 
   // console.log(productList);
   return (
@@ -82,13 +82,13 @@ export default function Product(){
           {mode === "grid" ? (
             <ProductCard
               props={product}
-              onAddWishClick={handleAddWishClick}
+              onAddWishClick={onAddWishClick}
               isWish={isWish}
             />
           ) : (
             <ProductList
               props={product}
-              onAddWishClick={handleAddWishClick}
+              onAddWishClick={onAddWishClick}
               isWish={isWish}
             />
           )}

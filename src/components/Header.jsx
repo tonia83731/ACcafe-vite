@@ -11,7 +11,12 @@ import WishList from "./Others/WishList";
 
 import { NavLink, Link } from "react-router-dom";
 
-export default function Header() {
+import useCartContext from "../hooks/useCartContext";
+
+export default function Header({ onRemoveWishClick, onRemoveAllWishClick }) {
+   const info = useCartContext();
+   const state = info.state;
+  //  const dispatch = info.dispatch;
   return (
     <header className="sticky top-0 left-0 h-[45px] leading-[45px] bg-olive-100 text-white-100 z-[1] tablet:h-[60px] tablet:leading-[60px]">
       <div className="grid gap-2 grid-cols-9 justify-center items-center h-full breakpoint:grid-cols-10">
@@ -76,7 +81,10 @@ export default function Header() {
               id="wish-list"
               className="hidden absolute top-[100%] right-0 bg-white-100 drop-shadow-md text-olive-80 w-full px-2 py-4 breakpoint:w-1/4 breakpoint:min-w-[450px]"
             >
-              <WishList />
+              <WishList
+                onRemoveWishClick={onRemoveWishClick}
+                onRemoveAllWishClick={onRemoveAllWishClick}
+              />
             </div>
           </div>
 
@@ -90,7 +98,7 @@ export default function Header() {
               id="bag-list"
               className="hidden absolute top-[100%] right-0 bg-white-100 drop-shadow-md text-olive-80 w-full px-2 py-4 breakpoint:w-1/4 breakpoint:min-w-[450px]"
             >
-              <BagList />
+              <BagList props={state} />
             </div>
           </div>
         </div>

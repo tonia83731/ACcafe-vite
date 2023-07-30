@@ -1,7 +1,24 @@
 import { GreenBtn } from "../Others/Button";
+import useCartContext from "../../hooks/useCartContext";
+import { useState } from "react";
 
+export default function CartSummary() {
+  
+  const info = useCartContext();
+  const state = info.state;
+  const dispatch = info.dispatch;
 
-export default function CartSummary(){
+  const [selectedValue, setSelectedValue] = useState("")
+  const handleSelectChange = (e) => {
+    setSelectedValue(e.target.value)
+  }
+
+  const total = state.reduce((total, item) => {
+    return total + item.price * item.quantity;
+  }, 0);
+
+  const sum = total + total*0.1 + Number(selectedValue)
+  
   return (
     <div className="bg-white-60 w-full">
       <div className="px-2 pt-2 pb-4">
@@ -11,11 +28,11 @@ export default function CartSummary(){
         <div className="px-2 border-b-2 border-grullo-60 pb-2">
           <p className="">
             <span className="">Price:</span>
-            <span className="ml-1.5">150</span>
+            <span className="ml-1.5">{total}</span>
           </p>
           <p className="">
             <span className="">Tax(10%):</span>
-            <span className="ml-1.5">$15</span>
+            <span className="ml-1.5">${total*0.1}</span>
           </p>
           <label htmlFor="shipping" className="">
             Shipping:
@@ -24,6 +41,8 @@ export default function CartSummary(){
             name="shipping"
             id="shipping"
             className="ml-1.5 bg-transparent"
+            value={selectedValue}
+            onChange={handleSelectChange}
           >
             <option value="0" className="">
               <div className="">Standard Shipping (3-7 days) free</div>
@@ -35,7 +54,7 @@ export default function CartSummary(){
         </div>
         <p className="p-2">
           <span className="">Total:</span>
-          <span className="ml-1.5">165</span>
+          <span className="ml-1.5">{sum}</span>
         </p>
         <GreenBtn className="w-full px-2">Submit</GreenBtn>
       </div>

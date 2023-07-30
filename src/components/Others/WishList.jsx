@@ -1,7 +1,7 @@
 import { ReactComponent as Food } from "../../assets/icon/menu/food.svg";
 import { ReactComponent as Delete } from "../../assets/icon/nav_icon/delete.svg";
 
-export function WishListItem() {
+export function WishListItem({onRemoveWishClick}) {
   return (
     <li className="px-4 my-2 grid gap-4 grid-cols-7">
       <img
@@ -18,28 +18,29 @@ export function WishListItem() {
         </div>
         <div className="">$150</div>
       </div>
-      <button className="col-start-7 delete-icon">
+      <button className="col-start-7 delete-icon" onClick={onRemoveWishClick}>
         <Delete/>
       </button>
     </li>
   );
 }
 
-export default function WishList() {
+export default function WishList({onRemoveWishClick, onRemoveAllWishClick}) {
   return (
     <ul className="">
       <li className="title text-xl font-bold text-olive-100 border-b-2 border-grullo-60 pb-3">
         Wish List
       </li>
       <div className="py-2 h-[350px] overflow-scroll">
-        <WishListItem />
-        <WishListItem />
-        <WishListItem />
-        <WishListItem />
+        <WishListItem onRemoveWishClick={onRemoveWishClick} />
+        <WishListItem onRemoveWishClick={onRemoveWishClick} />
+        <WishListItem onRemoveWishClick={onRemoveWishClick} />
+        <WishListItem onRemoveWishClick={onRemoveWishClick} />
       </div>
       <li className="text-right pt-3 border-t-2 border-grullo-60">
         <button
           className="bg-black-100 text-white-100 rounded drop-shadow-md h-[45px] leading-[45px] px-2"
+          onClick={onRemoveAllWishClick}
         >
           Delete All
         </button>
