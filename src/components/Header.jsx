@@ -12,11 +12,16 @@ import WishList from "./Others/WishList";
 import { NavLink, Link } from "react-router-dom";
 
 import useCartContext from "../hooks/useCartContext";
+import useWishContext from "../hooks/useWishContext";
 
 export default function Header({ onRemoveWishClick, onRemoveAllWishClick }) {
    const info = useCartContext();
    const state = info.state;
   //  const dispatch = info.dispatch;
+  const wishInfo = useWishContext();
+  const wishState = wishInfo.wishState
+
+
   return (
     <header className="sticky top-0 left-0 h-[45px] leading-[45px] bg-olive-100 text-white-100 z-[1] tablet:h-[60px] tablet:leading-[60px]">
       <div className="grid gap-2 grid-cols-9 justify-center items-center h-full breakpoint:grid-cols-10">
@@ -72,27 +77,26 @@ export default function Header({ onRemoveWishClick, onRemoveAllWishClick }) {
           </div> */}
 
           <div className="wish-dropdown">
-            <button type="button" className="mr-4">
+            <button type="button" className="mr-4 flex items-center">
               <div className="nav-icon">
                 <WishIcon />
               </div>
+              <div className="ml-0.5">({wishState.length})</div>
             </button>
             <div
               id="wish-list"
               className="hidden absolute top-[100%] right-0 bg-white-100 drop-shadow-md text-olive-80 w-full px-2 py-4 breakpoint:w-1/4 breakpoint:min-w-[450px]"
             >
-              <WishList
-                onRemoveWishClick={onRemoveWishClick}
-                onRemoveAllWishClick={onRemoveAllWishClick}
-              />
+              <WishList props={wishState} />
             </div>
           </div>
 
           <div className="bag-dropdown">
-            <button type="button" className="">
+            <button type="button" className="flex items-center">
               <div className="nav-icon">
                 <BagIcon />
               </div>
+              <div className="ml-0.5">({state.length})</div>
             </button>
             <div
               id="bag-list"

@@ -66,7 +66,9 @@ export default {
       screens: {
         tablet: "600px",
         breakpoint: "720px",
+        breakpoint2: "850px",
         desktop: "900px",
+        breakpoint3: "1100px"
       },
       gridTemplateRows: {
         "banner-4": "repeat(4, minmax(80px, 1fr))",

@@ -1,15 +1,22 @@
 import { dummyProductData } from "../../data/ProductData";
 import { GreenBtn } from "../Others/Button";
+import { useState } from "react";
 import useCartContext from "../../hooks/useCartContext";
+import useWishContext from "../../hooks/useWishContext";
 
 export function ProductCardItem({
-  prop,
-  onAddChartClick,
-  onAddWishClick,
-  isWish,
+  prop
 }) {
   const info = useCartContext();
   const dispatch = info.dispatch;
+
+  const wishInfo = useWishContext();
+  const wishDispatch = wishInfo.dispatch;
+  
+  
+  const handleAddWish = () => {
+    wishDispatch({ type: "Add", payload: prop });
+  }
 
   return (
     <div className="rounded-lg drop-shadow-lg bg-white-100 h-[440px]">
@@ -28,18 +35,16 @@ export function ProductCardItem({
         </div>
         <div className="grid gap-4 grid-cols-4">
           <GreenBtn
-            className="col-span-3"
+            className="col-span-2"
             onClick={() => dispatch({ type: "Add", payload: prop })}
           >
             Add to Cart
           </GreenBtn>
           <button
-            className={`rounded px-3 py-1 text-xs bg-grullo-100 hover:text-white-100 tablet:text-sm ${
-              isWish ? "text-christmas-red" : "text-white-60"
-            }`}
-            onClick={() => onAddWishClick?.(prop.id)}
+            className="col-span-2 rounded px-3 py-1 text-xs bg-grullo-100 hover:font-bold tablet:text-sm text-white-100"
+            onClick={handleAddWish}
           >
-            ❤
+            Add to Wish
           </button>
         </div>
       </div>
@@ -47,20 +52,21 @@ export function ProductCardItem({
   );
 }
 
-export default function ProductCard({ props, onAddWishClick, isWish }) {
+export default function ProductCard({ props, onAddWishClick }) {
   const ProductCardList = props.map((prop) => {
     prop.quantity = 1
+    const wishInfo = useWishContext();
+    
     return (
       <ProductCardItem
         prop={prop}
         onAddWishClick={onAddWishClick}
-        isWish={isWish}
       />
     );
   });
 
   return (
-    <div className="grid gap-4 grid-cols-[100%] py-4 grid-row-autofit tablet:grid-cols-2 breakpoint:grid-cols-3 desktop:grid-cols-4">
+    <div className="grid gap-4 grid-cols-[100%] py-4 grid-row-autofit tablet:grid-cols-2 breakpoint2:grid-cols-3 breakpoint3:grid-cols-4">
       {ProductCardList}
     </div>
   );

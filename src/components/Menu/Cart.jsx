@@ -12,7 +12,6 @@ export default function Cart() {
   const info = useCartContext();
   const state = info.state;
   const dispatch = info.dispatch
-  const navigate = useNavigate()
   const [formData, setFormData] = useState({
     firstname: "",
     lastname: "",
@@ -34,8 +33,13 @@ export default function Cart() {
       showConfirmButton: false,
       timer: 1500,
     });
-    window.location.reload();
-    navigate("*")
+    setFormData({
+      firstname: "",
+      lastname: "",
+      phoneNum: "",
+      address: "",
+    });
+    dispatch({ type: "Clear" });
   };
   return (
     <section id="cart" className="bg-grullo-60 px-4 py-4">

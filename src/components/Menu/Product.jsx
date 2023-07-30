@@ -7,9 +7,14 @@ import { dummyProductData } from "../../data/ProductData";
 
 import { useState } from "react";
 import useCartContext from "../../hooks/useCartContext";
+import useWishContext from "../../hooks/useWishContext";
 
 export default function Product({ onAddWishClick, isWish }) {
-  console.log(useCartContext())
+  // console.log(useCartContext())
+  // console.log(useWishContext())
+  // const wishInfo = useWishContext();
+    
+
   const [mode, setMode] = useState("grid");
   const [searchValue, setSearchValue] = useState("");
   const [productList, setProductList] = useState(dummyProductData);
@@ -82,13 +87,11 @@ export default function Product({ onAddWishClick, isWish }) {
           {mode === "grid" ? (
             <ProductCard
               props={product}
-              onAddWishClick={onAddWishClick}
               isWish={isWish}
             />
           ) : (
             <ProductList
               props={product}
-              onAddWishClick={onAddWishClick}
               isWish={isWish}
             />
           )}

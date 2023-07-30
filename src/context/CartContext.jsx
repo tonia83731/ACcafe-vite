@@ -31,9 +31,12 @@ export const CartProvider = ({ children }) => {
         });
         return tempstate3;
       case "Remove":
-        const tempstate4 = state.filter((item) => item.id !== action.payload.id)
+        const tempstate4 = state.filter(
+          (item) => item.id !== action.payload.id
+        );
         return tempstate4;
-        
+      case "Clear":
+        return [];
       default:
         return state;
     }
