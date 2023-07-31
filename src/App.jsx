@@ -20,9 +20,9 @@ function App() {
             <BrowserRouter>
               <Header />
               <Routes>
-                <Route path="*" element={<HomePage />} />
-                <Route path="menu" element={<MenuPage />} />
-                <Route path="news" element={<NewsPage />} />
+                <Route path="/ACcafe-vite/" element={<HomePage />} />
+                <Route path="/ACcafe-vite/menu" element={<MenuPage />} />
+                <Route path="/ACcafe-vite/news" element={<NewsPage />} />
               </Routes>
             </BrowserRouter>
           </WishProvider>
