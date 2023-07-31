@@ -53,13 +53,13 @@ export default function Header({ onRemoveWishClick, onRemoveAllWishClick }) {
             className="nav-item flex flex-col breakpoint:grid breakpoint:gap-4 breakpoint:grid-cols-3"
             aria-labelledby="nav-toggle"
           >
-            <NavLink to="/" className="justify-self-end">
+            <NavLink to="/ACcafe-vite/" className="justify-self-end">
               Home
             </NavLink>
-            <NavLink to="/menu" className="justify-self-center">
+            <NavLink to="/ACcafe-vite/menu" className="justify-self-center">
               Menu
             </NavLink>
-            <NavLink to="/news" className="justify-self-start">
+            <NavLink to="/ACcafe-vite/news" className="justify-self-start">
               News
             </NavLink>
           </div>

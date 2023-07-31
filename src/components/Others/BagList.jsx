@@ -33,11 +33,11 @@ export default function BagList({props}) {
       </li>
       <div className="py-2 h-[350px] overflow-scroll">
         {props.map((prop) => (
-          <BagListItem prop={prop} key={prop.id}/>
+          <BagListItem prop={prop} key={prop.id} />
         ))}
       </div>
       <li className="text-right pt-3 border-t-2 border-grullo-60">
-        <Link to="/menu#cart">
+        <Link to="/ACcafe-vite/menu#cart">
           <button
             className="bg-black-100 text-white-100 rounded drop-shadow-md h-[45px] leading-[45px] px-2"
             onClick={handleAnchorClick}

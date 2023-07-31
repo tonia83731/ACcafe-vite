@@ -14,7 +14,7 @@ export default function HomeBanner() {
           <p className="text-olive-100 font-bold text-base px-4 z-10 tablet:text-xl">
             30% off to be the first to try Berry Party Set.
           </p>
-          <Link to="/menu" className="px-4 mt-1 z-10">
+          <Link to="/ACcafe-vite/menu" className="px-4 mt-1 z-10">
             <GreenBtn>Go to Menu</GreenBtn>
           </Link>
           <div className="absolute bottom-0 bg-white-60 w-full h-4/5 tablet:h-2/5 tablet:top-1/2 tablet:translate-y-[-50%]"></div>
@@ -23,14 +23,14 @@ export default function HomeBanner() {
           <h5 className="title text-xl font-bold">
             Summer Vacation Special Deal!
           </h5>
-          <Link to="/news" className="mt-1 tablet:self-end">
+          <Link to="/ACcafe-vite/news" className="mt-1 tablet:self-end">
             <GreenBtn>More</GreenBtn>
           </Link>
           <div className=""></div>
         </div>
         <div className="text-white-100 bg-right-bottom-banner bg-no-repeat bg-cover bg-center p-4 col-span-2 row-start-3 row-end-5 drop-shadow-xl flex flex-col justify-end items-end text-right tablet:col-start-4 tablet:col-end-5 tablet:row-start-3 tablet:row-end-5 tablet:items-start tablet:text-left">
           <h5 className="title text-xl font-bold">New Branch Opened!</h5>
-          <Link to="/news" className="mt-1 tablet:self-end">
+          <Link to="/ACcafe-vite/news" className="mt-1 tablet:self-end">
             <GreenBtn>More</GreenBtn>
           </Link>
           <div className="sub-background-white"></div>
