@@ -55,11 +55,12 @@ export function ProductCardItem({
 export default function ProductCard({ props, onAddWishClick }) {
   const ProductCardList = props.map((prop) => {
     prop.quantity = 1
-    const wishInfo = useWishContext();
+    // const wishInfo = useWishContext();
     
     return (
       <ProductCardItem
         prop={prop}
+        key={prop.id}
         onAddWishClick={onAddWishClick}
       />
     );

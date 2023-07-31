@@ -3,7 +3,16 @@ import { createContext, useReducer, useEffect, useState } from "react";
 
 const WishContext = createContext();
 
+// const wishFromLocalStorage = JSON.parse(
+//   localStorage.getItem("wishState") || "[]"
+// );
+
+
 export const WishProvider = ({ children }) => {
+  const initialState = [];
+  const initializer = () => {
+    JSON.parse(localStorage.getItem("wishArray")) || initialState;
+  };
   const wishReducer = (state, action) => {
     switch (action.type) {
       case "Add":
@@ -24,8 +33,15 @@ export const WishProvider = ({ children }) => {
         return state;
     }
   };
-  const [wishState, dispatch] = useReducer(wishReducer, []);
+  const [wishState, dispatch] = useReducer(
+    wishReducer, []
+    // JSON.parse(localStorage.getItem("wishArray")) || initialState
+  );
   const wishInfo = { wishState, dispatch };
+
+  useEffect(() => {
+    localStorage.setItem("wishArray", JSON.stringify(wishState));
+  }, [wishState]);
 
   return (
     <WishContext.Provider value={wishInfo}>{children}</WishContext.Provider>
