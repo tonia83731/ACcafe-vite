@@ -64,6 +64,7 @@ export default {
           "url('https://images.unsplash.com/photo-1501339847302-ac426a4a7cbb?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1178&q=80')",
       },
       screens: {
+        breakpoint5: "450px",
         tablet: "600px",
         breakpoint: "720px",
         breakpoint2: "850px",

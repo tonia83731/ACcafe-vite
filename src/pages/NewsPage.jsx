@@ -62,7 +62,7 @@ export default function NewsPage() {
           <div className="col-span-4 tablet:col-span-1 tablet:row-span-3">
             <NewsOption onOptionsChange={handleOptionChange} />
           </div>
-          <div className="col-span-4 tablet:col-start-2 tablet:col-span-3 tablet:row-span-3">
+          <div className="col-span-4 mt-10 breakpoint5:mt-4 tablet:mt-0 tablet:col-start-2 tablet:col-span-3 tablet:row-span-3">
             <NewsList
               props={news}
               onNewsModalClick={handleNewsModalClick}
