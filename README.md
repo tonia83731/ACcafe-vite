@@ -31,7 +31,7 @@ This project is available on mobile, tablet and desktop.
   * By clicking on the news list title, the screen will popup for further information
 
 ## Demo Page Link
-
+https://tonia83731.github.io/ACcafe-vite/
 
 
 ## Demo Feature (Mobile)
@@ -83,3 +83,7 @@ ctrl + c
 This is for future development, will not include in current project
 
 * User can storage their wishlist and baglist and save for next open
+
+
+
+<!-- deploy github page: https://www.youtube.com/watch?v=XhoWXhyuW_I -->
