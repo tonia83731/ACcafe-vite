@@ -24,19 +24,19 @@ export default function Header({ onRemoveWishClick, onRemoveAllWishClick }) {
 
   return (
     <header className="sticky top-0 left-0 h-[45px] leading-[45px] bg-olive-100 text-white-100 z-[1] tablet:h-[60px] tablet:leading-[60px]">
-      <div className="grid gap-2 grid-cols-9 justify-center items-center h-full breakpoint:grid-cols-10">
+      <div className="grid gap-2 grid-cols-9 justify-center items-center h-full breakpoint4:grid-cols-10">
         {/* Hamburger */}
         <input type="checkbox" id="nav-toggle" className="nav-toggle hidden" />
         <label
           htmlFor="nav-toggle"
-          className="nav-toggle-label text-2xl col-start-2 breakpoint:hidden"
+          className="nav-toggle-label text-2xl col-start-2 breakpoint4:hidden"
         >
           &#9776;
         </label>
         {/* Logo */}
         <Link
           to="/ACcafe-vite/"
-          className="w-full flex justify-center items-center col-start-3 col-span-4 breakpoint:col-start-2 breakpoint:col-span-3"
+          className="w-full flex justify-center items-center col-start-3 col-span-4 breakpoint4:col-start-2 breakpoint4:col-span-3"
         >
           <span className="logo-icon">
             <Logo />
@@ -47,10 +47,10 @@ export default function Header({ onRemoveWishClick, onRemoveAllWishClick }) {
         {/* Navbar */}
         <nav
           id="nav-list"
-          className="bg-gold-60 w-full absolute top-[100%] text-center breakpoint:bg-transparent breakpoint:static breakpoint:scale-y-100 breakpoint:col-start-6 breakpoint:col-span-2"
+          className="bg-gold-60 w-full absolute top-[100%] text-center breakpoint4:bg-transparent breakpoint4:static breakpoint4:scale-y-100 breakpoint4:col-start-6 breakpoint4:col-span-2"
         >
           <div
-            className="nav-item flex flex-col breakpoint:grid breakpoint:gap-4 breakpoint:grid-cols-3"
+            className="nav-item flex flex-col breakpoint4:grid breakpoint4:gap-4 breakpoint4:grid-cols-3"
             aria-labelledby="nav-toggle"
           >
             <NavLink to="/ACcafe-vite/" className="justify-self-end">
@@ -66,7 +66,7 @@ export default function Header({ onRemoveWishClick, onRemoveAllWishClick }) {
         </nav>
 
         {/* Button Group */}
-        <div className="w-full col-start-7 col-span-2 flex flex-wrap justify-end breakpoint:col-start-9 breakpoint:col-span-1">
+        <div className="w-full col-start-7 col-span-3 flex flex-wrap justify-end breakpoint4:col-start-9 breakpoint4:col-span-1">
           {/* <Link to="#" className="">
             <div className="nav-icon">
               <UserIcon />
@@ -81,7 +81,7 @@ export default function Header({ onRemoveWishClick, onRemoveAllWishClick }) {
               <div className="nav-icon">
                 <WishIcon />
               </div>
-              <div className="ml-0.5">({wishState.length})</div>
+              <div className="breakpoint:ml-0.5">({wishState.length})</div>
             </button>
             <div
               id="wish-list"

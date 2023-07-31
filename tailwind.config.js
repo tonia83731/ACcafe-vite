@@ -68,6 +68,7 @@ export default {
         breakpoint: "720px",
         breakpoint2: "850px",
         desktop: "900px",
+        breakpoint4:"1080px",
         breakpoint3: "1100px"
       },
       gridTemplateRows: {

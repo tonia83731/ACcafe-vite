@@ -19,6 +19,8 @@ This project is available on mobile, tablet and desktop.
   * Users are available to search for shop contact information at "Contact Us" section
 * Menupage
   * User could see all the product information in Menupage
+    * User could see product in both card and list mode
+    * User could search items through search bar
   * Users could click on "Add to Cart" button to add items into the Shopping bag
   * Users could click on "Add Wish" button to add items into the Wish list
   * User could plus/minus the items at "Shopping Bat" section
