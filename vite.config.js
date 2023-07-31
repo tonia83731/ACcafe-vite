@@ -7,4 +7,5 @@ import reactRefresh from "@vitejs/plugin-react-refresh";
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [react(), svgr(), reactRefresh()],
+  base: "/ACcafe-vite"
 });
