@@ -36,14 +36,30 @@ This project is available on mobile, tablet and desktop.
 https://tonia83731.github.io/ACcafe-vite/
 
 
-## Demo Feature (Mobile)
-(Number description same as Demo Feature (Desktop))
-
-<!-- ![Alt text](src/MarkDown/Taipei_parking_mobile-02.png) -->
-
 ## Demo Feature (Desktop)
+1. HomePage: #HomeBanner, #ContactUs
+2. 1 MenuPage: Product show by grid and #ShoppingBag
+2. 2 MenuPage: Product show by list
+3. Wish list show by hover
+4. Bag lsit show by hover
+5. NewsPage: NewsList and could filter through button group
+6. NewsPage: News modal to show detail information
 
-<!-- ![Alt text](src/MarkDown/Taipei_parking_desktop.png) -->
+![Alt text](src/assets/img/rm_Desktop.png)
+
+## Demo Feature (Mobile)
+1. HomePage:　#HomeBanner
+2. Hamburger Navbar, click to show
+3. HomePage: #ContactUs, Footer
+4. 1 MenuPage: Product show by grid
+4. 2 MenuPage: Product show by list
+5. MenuPage: #ShoppingBag
+6. 1 Wish list show by hover
+6. 2 Bag lsit show by hover
+7. NewsPage: NewsList and could filter through button group
+8. NewsPage: News modal to show detail information
+
+![Alt text](src/assets/img/rm_Tablet.png)
 
 ## Develp Environment and Tools
 
