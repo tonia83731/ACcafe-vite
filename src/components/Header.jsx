@@ -35,7 +35,7 @@ export default function Header({ onRemoveWishClick, onRemoveAllWishClick }) {
         </label>
         {/* Logo */}
         <Link
-          to="/"
+          to="/ACcafe-vite/"
           className="w-full flex justify-center items-center col-start-3 col-span-4 breakpoint:col-start-2 breakpoint:col-span-3"
         >
           <span className="logo-icon">
