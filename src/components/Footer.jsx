@@ -4,6 +4,8 @@ import SocialMediaLink from "./Others/SocialMediaLink";
 import Subscribe from "./Others/Subscribe";
 import { SuccessTag, ErrorTag } from "./Others/SubscribeNotiTag";
 
+import { Link } from "react-router-dom";
+
 export default function Footer() {
   const [inputValue, setInputValue] = useState("")
   const [isTrueOpen, setIsTrueOpen] = useState(false);
@@ -35,6 +37,11 @@ export default function Footer() {
       {isTrueOpen && <SuccessTag onCloseClick={() => setIsTrueOpen(false)} />}
       <SocialMediaLink />
       <p className="">&#169;2023 AC café. All rights reserved.</p>
+      <div>
+        <a href="">FrontStage Login</a>
+        <span> | </span>
+        <a href="/ACcafe-vite/back-login">BackStage Login</a>
+      </div>
     </footer>
   );
 }

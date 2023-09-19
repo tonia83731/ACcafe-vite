@@ -84,6 +84,10 @@ select:focus {
   fill: #fefefe;
 }
 
+.logo-icon.backstage svg path {
+  fill: rgb(8, 8, 8, 0.8);
+}
+
 .nav-icon svg {
   width: auto;
   height: 1.2em;

@@ -1,6 +1,8 @@
 import NewsOption from "../components/News/NewsOption"
 import NewsList from "../components/News/NewsList";
 import NewsModal from "../components/News/NewsModal";
+import Header from "../components/Header";
+import Footer from "../components/Footer";
 
 import { dummyNewsData } from "../data/NewsData";
 
@@ -55,32 +57,36 @@ export default function NewsPage() {
   }
 
   return (
-    <main className="mt-8 mb-12 desktop:max-w-[1200px] desktop:mx-auto">
-      <section id="news" className="px-4 py-4">
-        <div className="grid gap-4 grid-cols-4 grid-rows-banner-3">
-          <div className="bg-news-banner bg-no-repeat bg-cover bg-center col-span-4"></div>
-          <div className="col-span-4 tablet:col-span-1 tablet:row-span-3">
-            <NewsOption onOptionsChange={handleOptionChange} />
+    <>
+      <Header />
+      <main className="mt-8 mb-12 desktop:max-w-[1200px] desktop:mx-auto">
+        <section id="news" className="px-4 py-4">
+          <div className="grid gap-4 grid-cols-4 grid-rows-banner-3">
+            <div className="bg-news-banner bg-no-repeat bg-cover bg-center col-span-4"></div>
+            <div className="col-span-4 tablet:col-span-1 tablet:row-span-3">
+              <NewsOption onOptionsChange={handleOptionChange} />
+            </div>
+            <div className="col-span-4 mt-10 breakpoint5:mt-4 tablet:mt-0 tablet:col-start-2 tablet:col-span-3 tablet:row-span-3">
+              <NewsList
+                props={news}
+                onNewsModalClick={handleNewsModalClick}
+                numbers={numbers}
+                currentPage={currentPage}
+                onNextClick={handleNextClick}
+                onPrevClick={handlePrevClick}
+                onPageClick={handlePageClick}
+              />
+            </div>
           </div>
-          <div className="col-span-4 mt-10 breakpoint5:mt-4 tablet:mt-0 tablet:col-start-2 tablet:col-span-3 tablet:row-span-3">
-            <NewsList
-              props={news}
-              onNewsModalClick={handleNewsModalClick}
-              numbers={numbers}
-              currentPage={currentPage}
-              onNextClick={handleNextClick}
-              onPrevClick={handlePrevClick}
-              onPageClick={handlePageClick}
-            />
-          </div>
-        </div>
-      </section>
-      {modalToggle && (
-        <NewsModal
-          props={modalContent}
-          onModalClick={() => setModalToggle(false)}
-        />
-      )}
-    </main>
+        </section>
+        {modalToggle && (
+          <NewsModal
+            props={modalContent}
+            onModalClick={() => setModalToggle(false)}
+          />
+        )}
+      </main>
+      <Footer/>
+    </>
   );
 }
