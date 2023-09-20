@@ -1,9 +1,6 @@
 /** @type {import('tailwindcss').Config} */
 export default {
-  content: [
-    "./index.html",
-    "./src/**/*.{js,ts,jsx,tsx}",
-  ],
+  content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
   theme: {
     extend: {
       colors: {
@@ -41,13 +38,15 @@ export default {
           60: "rgb(8, 8, 8, .6)",
           40: "rgb(8, 8, 8, .4)",
           20: "rgb(8, 8, 8, .2)",
-          5: "rgb(8, 8, 8, .05)",
         },
         "christmas-red": "#B11E31",
         success: "#3DD598",
         warning: "#FFC542",
         error: "#FC5A5A",
-        beige: "#E8D9CD",
+        beige: {
+          100: "#E8D9CD",
+          15: "rgb(232, 217, 205, 0.15)",
+        },
       },
       backgroundImage: {
         "main-banner":
@@ -69,8 +68,8 @@ export default {
         breakpoint: "720px",
         breakpoint2: "850px",
         desktop: "900px",
-        breakpoint4:"1080px",
-        breakpoint3: "1100px"
+        breakpoint4: "1080px",
+        breakpoint3: "1100px",
       },
       gridTemplateRows: {
         "banner-4": "repeat(4, minmax(80px, 1fr))",
