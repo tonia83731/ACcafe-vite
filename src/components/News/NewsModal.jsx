@@ -3,7 +3,7 @@
 
 export default function NewsModal({props, onModalClick}){
   return (
-    <div className="bg-beige py-2 px-4 w-3/4 rounded fixed top-2/4 left-2/4 translate-x-[-50%] translate-y-[-50%] desktop:w-2/4 desktop:py-0 desktop:pt-2 desktop:pb-4">
+    <div className="bg-beige-100 py-2 px-4 w-3/4 rounded fixed top-2/4 left-2/4 translate-x-[-50%] translate-y-[-50%] desktop:w-2/4 desktop:py-0 desktop:pt-2 desktop:pb-4">
       <button className="w-full text-2xl text-grullo-100 hover:text-olive-80 flex justify-end" onClick={onModalClick}>
         &#10799;
       </button>

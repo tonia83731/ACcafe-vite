@@ -5,6 +5,7 @@ import MenuPage from "./pages/MenuPage";
 import NewsPage from "./pages/NewsPage";
 import BackLoginPage from "./pages/BackLoginPage";
 import BackProductListPage from "./pages/BackProductListPage";
+import BackProductNewsPage from "./pages/BackProductNewsPage";
 // import MainPage from "./pages/MainPage";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { CartProvider } from "./context/CartContext";
@@ -28,6 +29,10 @@ function App() {
                 <Route
                   path="/ACcafe-vite/back-products"
                   element={<BackProductListPage />}
+                />
+                <Route
+                  path="/ACcafe-vite/back-news"
+                  element={<BackProductNewsPage />}
                 />
               </Routes>
             </BrowserRouter>

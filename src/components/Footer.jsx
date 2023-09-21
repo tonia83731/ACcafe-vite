@@ -38,9 +38,16 @@ export default function Footer() {
       <SocialMediaLink />
       <p className="">&#169;2023 AC café. All rights reserved.</p>
       <div>
-        <a href="">FrontStage Login</a>
-        <span> | </span>
-        <a href="/ACcafe-vite/back-login">BackStage Login</a>
+        <a href="" className="opacity-50">
+          FrontStage Login
+        </a>
+        <span className="opacity-50"> | </span>
+        <a
+          href="/ACcafe-vite/back-login"
+          className="opacity-50 hover:opacity-100"
+        >
+          BackStage Login
+        </a>
       </div>
     </footer>
   );

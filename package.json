@@ -16,13 +16,14 @@
     "axios": "^1.5.0",
     "flowbite": "^1.7.0",
     "flowbite-react": "^0.5.0",
+    "jsonwebtoken": "^8.5.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-id-generator": "^3.0.2",
     "react-refresh": "^0.14.0",
     "react-router-dom": "^6.14.2",
     "styled-components": "^6.0.4",
-    "sweetalert2": "^11.7.20",
+    "sweetalert2": "^11.6.4",
     "vite-plugin-svgr": "^3.2.0"
   },
   "devDependencies": {

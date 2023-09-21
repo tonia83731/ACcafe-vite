@@ -1,10 +1,14 @@
 import { ReactComponent as Logo } from "../assets/favicon.svg";
 import { ReactComponent as Logout } from "../assets/icon/nav_icon/Logout.svg";
 
-import { NavLink, Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 export default function HeaderBack() {
-
+  const navigate = useNavigate()
+  const handleLogoutClick = () => {
+    localStorage.removeItem('token')
+    navigate("/ACcafe-vite/back-login");
+  }
   return (
     <header className="sticky top-0 left-0 h-[60px] leading-[60px] bg-olive-100 text-white-100 z-[1]">
       <div className="grid gap-2 grid-cols-10 justify-center items-center h-full">
@@ -29,15 +33,15 @@ export default function HeaderBack() {
           <li className="mx-2"></li>
           <li className="">Others</li>
         </ul>
-        <Link
-          to="/ACcafe-vite/back-login"
-          className="flex justify-center col-start-7 col-span-3"
+        <button
+          className="flex justify-end items-center col-start-7 col-span-3"
+          onClick={handleLogoutClick}
         >
           <div className="nav-icon flex items-center leading-[60px]">
             <Logout />
           </div>
           <div className="ml-2">Log out</div>
-        </Link>
+        </button>
       </div>
     </header>
   );
