@@ -37,24 +37,47 @@ export default function BackProductNewsPage() {
   const handleToggleClose = () => {
     setIsToggle(false);
   };
-  const handleNextClick = () => {
+  const handleNextClick = async () => {
+    const page = currentPage - 1
     if (currentPage !== 1) {
-      return setCurrentPage(currentPage - 1);
+      setCurrentPage(currentPage - 1);
+    }
+    try {
+      const res = await getNewsList(page);
+      const datas = res.data.articles;
+      setNews(datas);
+    } catch (error) {
+      console.error(error);
     }
   };
-  const handlePrevClick = () => {
+  const handlePrevClick = async () => {
+    const page = currentPage + 1
     if (currentPage !== totalPage) {
-      return setCurrentPage(currentPage + 1);
+      setCurrentPage(currentPage + 1);
+    }
+    try {
+      const res = await getNewsList(page);
+      const datas = res.data.articles;
+      setNews(datas);
+    } catch (error) {
+      console.error(error);
     }
   };
-  const handlePageClick = (page) => {
+  const handlePageClick = async (page) => {
     setCurrentPage(page);
+    try {
+       const res = await getNewsList(page);
+       const datas = res.data.articles;
+       setNews(datas);
+    } catch (error){
+      console.error(error)
+    }
   };
   const handleNewsChange = (e) => {
     let value = "";
     if (e.target.type === "checkbox") value = e.target.checked;
-    else if (e.target.type === "date")
-      value = convertTimeToNumber(e.target.value);
+    // else if (e.target.type === "date")
+    //   value = convertTimeToNumber(e.target.value);
     else value = e.target.value;
     setNewsData({
       ...newsData,
@@ -64,12 +87,23 @@ export default function BackProductNewsPage() {
   };
   const handleNewsSubmit = async (e) => {
     e.preventDefault();
+    const newsDataToSend = {
+      image: newsData.image,
+      title: newsData.title,
+      author: newsData.author,
+      create_at: convertTimeToNumber(newsData.create_at),
+      content: newsData.content,
+      description: newsData.description,
+      isPublic: newsData.isPublic
+    };
+    // console.log(formDataToSend);
     try {
       const data = await createNews({
-        data: newsData,
+        data: newsDataToSend,
       });
-      // console.log(data);
+      console.log(data);
       if (data.success) {
+        setIsToggle(false);
         setNewsData({
           image: "",
           title: "",
@@ -79,8 +113,13 @@ export default function BackProductNewsPage() {
           description: "",
           isPublic: false,
         });
-        setIsToggle(false);
-        window.location.reload();
+        setNews((prevData) => {
+          return [
+            ...prevData,
+            newsDataToSend
+          ]
+        })
+        // window.location.reload();
       }
     } catch (error) {
       console.error(error);
@@ -121,8 +160,8 @@ export default function BackProductNewsPage() {
   const handleEditNewsChange = (e) => {
      let value = "";
      if (e.target.type === "checkbox") value = e.target.checked;
-     else if (e.target.type === "date")
-       value = convertTimeToNumber(e.target.value);
+    //  else if (e.target.type === "date")
+    //    value = convertTimeToNumber(e.target.value);
      else value = e.target.value;
      setNewsData({
        ...newsData,
@@ -131,15 +170,40 @@ export default function BackProductNewsPage() {
   }
   const handleEditNewsSubmit = async (e) => {
     e.preventDefault()
-    console.log(tempID)
-    // try {
-    //   const data = await editNews({
-    //     data: newsData
-    //   }, tempID)
-    //   console.log(data)
-    // } catch (error){
-    //   console.error(error)
-    // }
+    // console.log(tempID)
+    const newsDataToSend = {
+      image: newsData.image,
+      title: newsData.title,
+      author: newsData.author,
+      create_at: convertTimeToNumber(newsData.create_at),
+      content: newsData.content,
+      description: newsData.description,
+      isPublic: newsData.isPublic,
+    };
+    try {
+      const data = await editNews(
+        {
+          data: newsDataToSend,
+        },
+        tempID
+      );
+      if (data.success) {
+        setIsToggle(false);
+        setNewsData({
+          image: "",
+          title: "",
+          author: "",
+          create_at: 0,
+          content: "",
+          description: "",
+          isPublic: false,
+        });
+        window.location.reload();
+      }
+      console.log(data)
+    } catch (error){
+      console.error(error)
+    }
   }
 
   useEffect(() => {
@@ -149,6 +213,9 @@ export default function BackProductNewsPage() {
       const pages = res.data.pagination;
       setNews(datas);
       setPagination(pages);
+      console.log(res.data)
+      console.log(pages)
+      console.log(datas)
     };
     getNewsListAsync();
   }, []);
@@ -197,7 +264,7 @@ export default function BackProductNewsPage() {
                 key={item.id}
               >
                 <td className="py-2">{item.author}</td>
-                <td className="py-2">{item.title}</td>
+                <td className="py-2 text-left">{item.title}</td>
                 <td className="py-2">{convertNumberToTime(item.create_at)}</td>
                 <td className="py-2">
                   {item.isPublic === true ? "Published" : "Unpublished"}

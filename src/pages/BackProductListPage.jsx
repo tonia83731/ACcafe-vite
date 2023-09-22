@@ -94,7 +94,13 @@ export default function BackProductListPage() {
           is_enabled: false,
         });
         setIsToggle(false)
-        window.location.reload();
+        setProductData((prevData) => {
+          return [
+            ...prevData,
+            formData
+          ]
+        })
+        // window.location.reload();
       }
       console.log(data)
     } catch (error) {
@@ -219,11 +225,13 @@ export default function BackProductListPage() {
                 key={item.id}
               >
                 <td className="py-2">{item.category}</td>
-                <td className="py-2">{item.title}</td>
+                <td className="py-2 text-left">{item.title}</td>
                 <td className="py-2">{item.origin_price}</td>
                 <td className="py-2">{item.price}</td>
                 <td className="py-2">
-                  <GreenBtn onClick={() => handleEditProductOpen?.(item.id)}>Edit</GreenBtn>
+                  <GreenBtn onClick={() => handleEditProductOpen?.(item.id)}>
+                    Edit
+                  </GreenBtn>
                   <button
                     className="rounded px-3 py-1 text-xs bg-grullo-100 hover:font-bold tablet:text-sm text-white-100 ml-1"
                     onClick={() => handleProductDelete?.(item.id)}

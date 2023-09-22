@@ -8,8 +8,7 @@ export const getNewsList = async (page) => {
     const res = await axios.get(
       `${import.meta.env.VITE_APP_API}/api/${
         import.meta.env.VITE_APP_PATH
-      }/admin/articles?page=${page}`,
-      {}
+      }/admin/articles?page=${page}`
     );
     return res;
   } catch (error) {
