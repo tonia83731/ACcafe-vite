@@ -113,7 +113,7 @@ export default function EditModal({ onToggleClose, onChange, data, onProductSubm
                 id="product-ready"
                 name="is_enabled"
                 onChange={onChange}
-                value={data.is_enabled}
+                checked={data.is_enabled}
               />
               <label htmlFor="product-ready">
                 The product is ready to launch

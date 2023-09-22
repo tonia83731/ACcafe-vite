@@ -24,7 +24,7 @@ export default function EditNewsModal({ onToggleClose, onChange, onSubmit, data 
               placeholder="Enter image url here..."
               isRequired={false}
               onChange={onChange}
-              value={data.image}
+              inputValue={data.image}
             />
             <EditFile />
           </div>
@@ -37,7 +37,7 @@ export default function EditNewsModal({ onToggleClose, onChange, onSubmit, data 
                 placeholder="Enter news title here..."
                 isRequired={true}
                 onChange={onChange}
-                value={data.title}
+                inputValue={data.title}
               />
               <span className="mx-1"></span>
               <div className="mb-2">
@@ -70,7 +70,7 @@ export default function EditNewsModal({ onToggleClose, onChange, onSubmit, data 
               label="Date"
               isRequired={true}
               onChange={onChange}
-              value={data.create_at}
+              inputValue={data.create_at}
             />
             <EditInput
               name="content"
@@ -79,7 +79,7 @@ export default function EditNewsModal({ onToggleClose, onChange, onSubmit, data 
               placeholder="Enter address here..."
               isRequired={true}
               onChange={onChange}
-              value={data.content}
+              inputValue={data.content}
             />
             <EdiTextArea
               name="description"
@@ -89,7 +89,7 @@ export default function EditNewsModal({ onToggleClose, onChange, onSubmit, data 
               maxlength="200"
               isRequired={true}
               onChange={onChange}
-              value={data.description}
+              inputValue={data.description}
             />
             <div>
               <input
@@ -98,7 +98,7 @@ export default function EditNewsModal({ onToggleClose, onChange, onSubmit, data 
                 className="mr-2"
                 id="product-ready"
                 onChange={onChange}
-                value={data.isPublic}
+                checked={data.isPublic}
               />
               <label htmlFor="product-ready">
                 The news is ready to published

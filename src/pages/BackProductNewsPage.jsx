@@ -119,10 +119,27 @@ export default function BackProductNewsPage() {
     setIsEditToggle(false)
   }
   const handleEditNewsChange = (e) => {
-
+     let value = "";
+     if (e.target.type === "checkbox") value = e.target.checked;
+     else if (e.target.type === "date")
+       value = convertTimeToNumber(e.target.value);
+     else value = e.target.value;
+     setNewsData({
+       ...newsData,
+       [e.target.name]: value,
+     });
   }
   const handleEditNewsSubmit = async (e) => {
     e.preventDefault()
+    console.log(tempID)
+    // try {
+    //   const data = await editNews({
+    //     data: newsData
+    //   }, tempID)
+    //   console.log(data)
+    // } catch (error){
+    //   console.error(error)
+    // }
   }
 
   useEffect(() => {

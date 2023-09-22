@@ -19,24 +19,31 @@ export const getNewsList = async (page) => {
 
 export const createNews = async (payload) => {
   try {
-    const res = await axios.post(`${import.meta.env.VITE_APP_API}/api/${
+    const res = await axios.post(
+      `${import.meta.env.VITE_APP_API}/api/${
         import.meta.env.VITE_APP_PATH
-      }/admin/article`, payload)
-      return res.data
+      }/admin/article`,
+      payload
+    );
+    return res.data;
   } catch (error) {
     console.error("[Create new news failed]:", error);
   }
-}
+};
 
 export const editNews = async (payload, id) => {
   try {
-    const res = await axios.put(`${import.meta.env.VITE_APP_API}/api/${
+    const res = await axios.put(
+      `${import.meta.env.VITE_APP_API}/api/${
         import.meta.env.VITE_APP_PATH
-      }/admin/article/${id}`, payload)
+      }/admin/article/${id}`,
+      payload
+    );
+    return res.data
   } catch (error) {
     console.error("[Edit news failed]", error);
   }
-}
+};
 
 export const deleteNews = async (id) => {
   try {

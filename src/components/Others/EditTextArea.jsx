@@ -22,7 +22,7 @@ export default function EdiTextArea({
         className="w-full rounded px-4 py-1 bg-white-80 border border-grullo-40  text-sm focus:border-2 focus:border-grullo-80"
         id={`back-${className}`}
         value={inputValue}
-        maxLength={maxlength || "150"}
+        maxLength={maxlength || "250"}
         style={textResize}
         required={isRequired}
         onChange={onChange}

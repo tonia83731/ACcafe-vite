@@ -31,7 +31,9 @@ export default function HeaderBack() {
             <Link to="/ACcafe-vite/back-news">News</Link>
           </li>
           <li className="mx-2"></li>
-          <li className="">Others</li>
+          <li className="">
+            <Link to="/ACcafe-vite/back-orders">Orders</Link>
+          </li>
         </ul>
         <button
           className="flex justify-end items-center col-start-7 col-span-3"

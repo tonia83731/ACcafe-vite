@@ -6,6 +6,7 @@ import NewsPage from "./pages/NewsPage";
 import BackLoginPage from "./pages/BackLoginPage";
 import BackProductListPage from "./pages/BackProductListPage";
 import BackProductNewsPage from "./pages/BackProductNewsPage";
+import BackProductOrderPage from "./pages/BackProductOrderPage";
 // import MainPage from "./pages/MainPage";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { CartProvider } from "./context/CartContext";
@@ -33,6 +34,10 @@ function App() {
                 <Route
                   path="/ACcafe-vite/back-news"
                   element={<BackProductNewsPage />}
+                />
+                <Route
+                  path="/ACcafe-vite/back-orders"
+                  element={<BackProductOrderPage />}
                 />
               </Routes>
             </BrowserRouter>
