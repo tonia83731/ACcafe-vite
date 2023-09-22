@@ -2,9 +2,9 @@ import EditInput from "./EditInput";
 import EditFile from "./EditFile";
 import EdiTextArea from "./EditTextArea";
 
-export default function EditModal({ onToggleClose, onChange, data }) {
+export default function EditModal({ onToggleClose, onChange, data, onProductSubmit }) {
   return (
-    <div className="bg-white-100 w-8/12 min-w-[600px] fixed top-2/4 left-2/4 translate-x-[-50%] translate-y-[-50%] rounded-md shadow-lg">
+    <div className="bg-white-100 w-8/12 min-w-[600px] fixed top-2/4 left-2/4 translate-x-[-50%] translate-y-[-50%] rounded-md shadow-lg text-start">
       <div className="flex justify-between items-center bg-grullo-80 py-2 px-4 rounded-t-lg">
         <div className="font-bold">Product Form</div>
         <button
@@ -14,18 +14,18 @@ export default function EditModal({ onToggleClose, onChange, data }) {
           &#215;
         </button>
       </div>
-      <form action="" className="px-8 py-4">
+      <form action="" className="px-8 py-4" onSubmit={onProductSubmit}>
         <div className="grid grid-cols-3 gap-4">
           <div className="">
             <EditInput
-              name="image"
+              name="imageUrl"
               type="url"
               className="imgUrl"
               label="Upload Image by URL"
               placeholder="Enter image url here..."
               isRequired={false}
               onChange={onChange}
-              inputValue={data.image}
+              inputValue={data.imageUrl}
             />
             <EditFile />
           </div>

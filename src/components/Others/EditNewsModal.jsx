@@ -2,7 +2,7 @@ import EditInput from "./EditInput";
 import EditFile from "./EditFile";
 import EdiTextArea from "./EditTextArea";
 
-export default function EditNewsModal({ onToggleClose }) {
+export default function EditNewsModal({ onToggleClose, onChange, onSubmit, data }) {
   return (
     <div className="bg-white-100 w-8/12 min-w-[600px] fixed top-2/4 left-2/4 translate-x-[-50%] translate-y-[-50%] rounded-md shadow-lg">
       <div className="flex justify-between items-center bg-grullo-80 py-2 px-4 rounded-t-lg">
@@ -14,24 +14,30 @@ export default function EditNewsModal({ onToggleClose }) {
           &#215;
         </button>
       </div>
-      <form action="" className="px-8 py-4">
+      <form action="" className="px-8 py-4" onSubmit={onSubmit}>
         <div className="grid grid-cols-3 gap-4">
           <div className="">
             <EditInput
+              name="image"
               className="imgUrl"
               label="Upload Image by URL"
               placeholder="Enter image url here..."
               isRequired={false}
+              onChange={onChange}
+              value={data.image}
             />
             <EditFile />
           </div>
           <div className="col-span-2">
             <div className="flex">
               <EditInput
+                name="title"
                 className="news-title"
                 label="News Title"
                 placeholder="Enter news title here..."
                 isRequired={true}
+                onChange={onChange}
+                value={data.title}
               />
               <span className="mx-1"></span>
               <div className="mb-2">
@@ -39,9 +45,11 @@ export default function EditNewsModal({ onToggleClose }) {
                   Category <span className="text-error">*</span>
                 </label>
                 <select
-                  name="icon-type"
+                  name="author"
                   id="back-icon-select"
                   className="w-full rounded px-4 py-1 bg-white-80 border border-grullo-40  text-sm focus:border-2 focus:border-grullo-80"
+                  onChange={onChange}
+                  value={data.author}
                   required
                 >
                   <option value="" selected disabled hidden>
@@ -56,18 +64,46 @@ export default function EditNewsModal({ onToggleClose }) {
               </div>
             </div>
             <EditInput
+              name="create_at"
               className="news-date"
-              type="datetime-local"
-              label="Event Date"
+              type="date"
+              label="Date"
               isRequired={true}
+              onChange={onChange}
+              value={data.create_at}
+            />
+            <EditInput
+              name="content"
+              className="news-location"
+              label="Location"
+              placeholder="Enter address here..."
+              isRequired={true}
+              onChange={onChange}
+              value={data.content}
             />
             <EdiTextArea
+              name="description"
               className="news-info"
-              label="News Information"
-              placeholder="Enter news information here..."
+              label="Description"
+              placeholder="Enter description here..."
               maxlength="200"
               isRequired={true}
+              onChange={onChange}
+              value={data.description}
             />
+            <div>
+              <input
+                name="isPublic"
+                type="checkbox"
+                className="mr-2"
+                id="product-ready"
+                onChange={onChange}
+                value={data.isPublic}
+              />
+              <label htmlFor="product-ready">
+                The news is ready to published
+              </label>
+            </div>
           </div>
         </div>
         <div className="flex justify-end mt-4">

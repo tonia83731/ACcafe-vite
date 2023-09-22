@@ -1,11 +1,10 @@
-import { getProductList, createProduct, deleteProduct } from "../api/getProductList";
+import { getProductList, createProduct, deleteProduct, editProduct } from "../api/getProductList";
 // import { checkPermission } from "../api/admin";
 import HeaderBack from "../components/HeaderBack";
 import Pagination from "../components/Others/Pagination";
 import EditModal from "../components/Others/EditModal";
 import { GreenBtn } from "../components/Others/Button";
 import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
 
 export default function BackProductListPage() {
   // const navigate = useNavigate();
@@ -14,13 +13,15 @@ export default function BackProductListPage() {
     description: '',
     category: '',
     unit: '',
-    origin_price: '',
-    price: '',
-    image: '',
+    origin_price: 0,
+    price: 0,
+    imageUrl: '',
     is_enabled: false,
   })
   const [productData, setProductData] = useState([]);
   const [isToggle, setIsToggle] = useState(false);
+  const [isEditToggle, setIsEditToggle] = useState(false);
+  const [tempID, setTempID] = useState('')
   const [currentPage, setCurrentPage] = useState(1);
 
   const pageLength = productData?.length;
@@ -61,13 +62,102 @@ export default function BackProductListPage() {
       console.error(error)
     }
   }
-  const handleNewProductChange = async (e) => {
-    const value = e.target.type === 'checkbox' ? e.target.checked : e.target.value
+  const handleNewProductChange = (e) => {
+    // const value = e.target.type === 'checkbox' ? e.target.checked : e.target.value
+    let value = ""
+    if(e.target.type === 'checkbox') value = e.target.checked
+    else if (e.target.type === 'number') value = Number(e.target.value)
+    else value = e.target.value
     setFormData({
       ...formData,
       [e.target.name]: value
     })
-    console.log(formData)
+    // console.log(formData)
+  }
+  const handleProductSubmit = async (e) => {
+    e.preventDefault()
+    // console.log(formData)
+    // console.log(typeof formData.origin_price)
+    try {
+      const data = await createProduct({
+       data: formData
+      });
+      if(data.success){
+        setFormData({
+          title: "",
+          description: "",
+          category: "",
+          unit: "",
+          origin_price: 0,
+          price: 0,
+          imageUrl: "",
+          is_enabled: false,
+        });
+        setIsToggle(false)
+        window.location.reload();
+      }
+      console.log(data)
+    } catch (error) {
+      console.error(error)
+    }
+  }
+  const handleEditProductOpen = (id) => {
+    const product = productData.filter((item) => item.id === id)
+    const item = product[0]
+    setTempID(item.id)
+    setFormData({
+      title: item.title,
+      description: item.description,
+      category: item.category,
+      unit: item.unit,
+      origin_price: item.origin_price,
+      price: item.price,
+      imageUrl: item.imageUrl,
+      is_enabled: item.is_enabled,
+    });
+    // console.log(formData)
+    setIsEditToggle(true)
+    // console.log(tempID)
+  }
+  const handleEditToggleClose = () => {
+    setIsEditToggle(false)
+  }
+  const handleEditProductChange = (e) => {
+     let value = "";
+     if (e.target.type === "checkbox") value = e.target.checked;
+     else if (e.target.type === "number") value = Number(e.target.value);
+     else value = e.target.value;
+     setFormData({
+       ...formData,
+       [e.target.name]: value,
+     });
+    //  console.log(formData);
+  }
+  const handleEditProductSubmit = async (e) => {
+    e.preventDefault()
+    // console.log(tempID)
+    try {
+      const data = await editProduct({
+       data: formData
+      }, tempID)
+      if (data.success) {
+        setIsEditToggle(false);
+        setFormData({
+          title: "",
+          description: "",
+          category: "",
+          unit: "",
+          origin_price: 0,
+          price: 0,
+          imageUrl: "",
+          is_enabled: false,
+        });
+        window.location.reload();
+      }
+      console.log(data)
+    } catch (error) {
+      console.error(error)
+    }
   }
 
   useEffect(() => {
@@ -88,7 +178,22 @@ export default function BackProductListPage() {
   return (
     <>
       <HeaderBack />
-      {isToggle && <EditModal onToggleClose={handleToggleClose} data={formData} onChange={handleNewProductChange}/>}
+      {isToggle && (
+        <EditModal
+          onToggleClose={handleToggleClose}
+          data={formData}
+          onChange={handleNewProductChange}
+          onProductSubmit={handleProductSubmit}
+        />
+      )}
+      {isEditToggle && (
+        <EditModal
+          onToggleClose={handleEditToggleClose}
+          data={formData}
+          onChange={handleEditProductChange}
+          onProductSubmit={handleEditProductSubmit}
+        />
+      )}
       <section className="pt-16 px-16">
         <div className="flex justify-end">
           <button
@@ -118,8 +223,11 @@ export default function BackProductListPage() {
                 <td className="py-2">{item.origin_price}</td>
                 <td className="py-2">{item.price}</td>
                 <td className="py-2">
-                  <GreenBtn>Edit</GreenBtn>
-                  <button className="rounded px-3 py-1 text-xs bg-grullo-100 hover:font-bold tablet:text-sm text-white-100 ml-1" onClick={() => handleProductDelete ?.(item.id)}>
+                  <GreenBtn onClick={() => handleEditProductOpen?.(item.id)}>Edit</GreenBtn>
+                  <button
+                    className="rounded px-3 py-1 text-xs bg-grullo-100 hover:font-bold tablet:text-sm text-white-100 ml-1"
+                    onClick={() => handleProductDelete?.(item.id)}
+                  >
                     Delete
                   </button>
                 </td>
