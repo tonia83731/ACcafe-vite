@@ -1,11 +1,11 @@
 import axios from "axios";
 
-export const payOrder = async () => {
+export const payOrder = async (payload) => {
   try {
     const res = await axios.post(
       `${import.meta.env.VITE_APP_API}/api/${
         import.meta.env.VITE_APP_PATH
-      }/order`
+      }/order`, payload
     );
     return res;
   } catch (error) {

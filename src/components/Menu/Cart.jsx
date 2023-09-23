@@ -12,23 +12,13 @@ import {
 
 import Swal from "sweetalert2";
 
-export default function Cart({props, onRemoveClick}) {
+export default function Cart({ props, onRemoveClick, priceData, formData, onFormChange , onCartSubmit }) {
   const info = useCartContext();
   const state = info.state;
   const dispatch = info.dispatch;
-  const [formData, setFormData] = useState({
-    firstname: "",
-    lastname: "",
-    phoneNum: "",
-    address: "",
-  });
   const [cartData, setCartData] = useState([]);
 
-  const handleFormChange = (e) => {
-    const name = e.target.name;
-    const value = e.target.value;
-    setFormData((prevData) => ({ ...prevData, [name]: value }));
-  };
+  
   const handleCartSubmit = (e) => {
     e.preventDefault();
     if (state.length === 0) return;
@@ -62,10 +52,11 @@ export default function Cart({props, onRemoveClick}) {
       const datas = res.data.carts;
       // console.log(datas);
       setCartData(datas);
+      // console.log(res.data)
     };
     getFrontProductCartListAsync();
   }, []);
-  //  console.log(cartData)
+  // console.log(cartData)
   return (
     <section id="cart" className="bg-grullo-60 px-4 py-4">
       <div className="desktop:max-w-[1200px] desktop:mx-auto">
@@ -75,8 +66,8 @@ export default function Cart({props, onRemoveClick}) {
         <div className="grid gap-4 grid-rows-2 breakpoint:grid-rows-none breakpoint:grid-cols-2">
           <CartList props={props} onRemoveClick={onRemoveClick} />
           <form className="grid gap-2 grid-rows-2" onSubmit={handleCartSubmit}>
-            <CartForm onFormChange={handleFormChange} formData={formData} />
-            <CartSummary />
+            <CartForm onFormChange={onFormChange} formData={formData} />
+            <CartSummary prop={priceData} />
           </form>
         </div>
       </div>

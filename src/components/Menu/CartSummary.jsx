@@ -2,7 +2,7 @@ import { GreenBtn } from "../Others/Button";
 import useCartContext from "../../hooks/useCartContext";
 import { useState } from "react";
 
-export default function CartSummary() {
+export default function CartSummary({prop}) {
   
   const info = useCartContext();
   const state = info.state;
@@ -28,12 +28,12 @@ export default function CartSummary() {
         <div className="px-2 border-b-2 border-grullo-60 pb-2">
           <p className="">
             <span className="">Price:</span>
-            <span className="ml-1.5">{total}</span>
+            <span className="ml-1.5">{prop.total}</span>
           </p>
-          <p className="">
+          {/* <p className="">
             <span className="">Tax(10%):</span>
             <span className="ml-1.5">${total*0.1}</span>
-          </p>
+          </p> */}
           <label htmlFor="shipping" className="">
             Shipping:
           </label>
@@ -47,16 +47,16 @@ export default function CartSummary() {
             <option value="0" className="">
               <div className="">Standard Shipping (3-7 days) free</div>
             </option>
-            <option value="80" className="">
+            {/* <option value="80" className="">
               <div className="">DHL Shipping (48 hours) $100</div>
-            </option>
+            </option> */}
           </select>
         </div>
         <p className="p-2">
           <span className="">Total:</span>
-          <span className="ml-1.5">{sum}</span>
+          <span className="ml-1.5">{prop.final_total}</span>
         </p>
-        <GreenBtn className="w-full px-2">Submit</GreenBtn>
+        <GreenBtn className="w-full px-2 mt-8">Submit</GreenBtn>
       </div>
     </div>
   );
