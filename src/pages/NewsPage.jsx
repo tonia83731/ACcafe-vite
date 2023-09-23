@@ -4,6 +4,7 @@ import NewsModal from "../components/News/NewsModal";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import { getFrontNewsList, getFrontOneNewsList } from "../api/getFrontNewsList";
+import { getFrontProductCartList } from "../api/getFrontProductCart";
 import { dummyNewsData } from "../data/NewsData";
 
 import { useState, useEffect } from "react";
@@ -17,6 +18,7 @@ export default function NewsPage() {
   const [modalContent, setModalContent] = useState([])
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPage, setTotalPage] = useState(0)
+  const [cartData, setCartData] = useState([]);
 
   // const totalPage = pageData.total_pages
   // const numbers = [...Array(totalPage).keys()].map((i) => i + 1);
@@ -94,13 +96,20 @@ export default function NewsPage() {
       setNewsData(allNews)
       setFilterData(allNews)
     }
+    const getFrontProductCartListAsync = async () => {
+      const res = await getFrontProductCartList();
+      const datas = res.data.carts;
+      // console.log(datas);
+      setCartData(datas);
+    };
+    getFrontProductCartListAsync();
     getFrontNewsListAsync()
   }, [])
   console.log(newsData)
 
   return (
     <>
-      <Header />
+      <Header props={cartData} />
       <main className="mt-8 mb-12 desktop:max-w-[1200px] desktop:mx-auto">
         <section id="news" className="px-4 py-4">
           <div className="grid gap-4 grid-cols-4 grid-rows-banner-3">
@@ -128,7 +137,7 @@ export default function NewsPage() {
           />
         )}
       </main>
-      <Footer/>
+      <Footer />
     </>
   );
 }

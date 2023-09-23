@@ -10,14 +10,18 @@ import { useState, useEffect } from "react";
 import useCartContext from "../../hooks/useCartContext";
 import useWishContext from "../../hooks/useWishContext";
 
-export default function Product({ onAddWishClick, isWish }) {
+export default function Product({
+  onAddWishClick,
+  isWish,
+  onAddToBagClick
+}) {
   // console.log(useCartContext())
   // console.log(useWishContext())
   // const wishInfo = useWishContext();
-    
 
   const [mode, setMode] = useState("grid");
   const [searchValue, setSearchValue] = useState("");
+  const [productData, setProductData] = useState([])
   const [productList, setProductList] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
 
@@ -43,7 +47,7 @@ export default function Product({ onAddWishClick, isWish }) {
   const handleSearchSubmit = (e) => {
     e.preventDefault();
     if (searchValue === "") return;
-    const filterProduct = productList.filter((item) =>
+    const filterProduct = productData.filter((item) =>
       // console.log(item.title.toLowerCase().trim())
       item.title.toLowerCase().trim().includes(searchValue.toLowerCase().trim())
     );
@@ -67,21 +71,20 @@ export default function Product({ onAddWishClick, isWish }) {
     setCurrentPage(page);
   };
 
-  // wish list here
-  const handleAddWishClick = (id) => {
-    console.log(id);
-  };
+  // const handleAddBagClick = (id) => {
+  //   console.log(id);
+  // };
 
   useEffect(() => {
     const getFrontProductListAsync = async () => {
-      const res = await getFrontProductList()
-      const data = res.products
+      const res = await getFrontProductList();
+      const data = res.products;
       // console.log(data)
-      setProductList(data)
-    }
-    getFrontProductListAsync()
-  }, [])
-
+      setProductList(data);
+      setProductData(data)
+    };
+    getFrontProductListAsync();
+  }, []);
 
   // console.log(productList);
   return (
@@ -101,11 +104,15 @@ export default function Product({ onAddWishClick, isWish }) {
             <ProductCard
               props={product}
               isWish={isWish}
+              onAddBagClick={onAddToBagClick}
+              // onAddBagClick={handleAddBagClick}
             />
           ) : (
             <ProductList
               props={product}
               isWish={isWish}
+              onAddBagClick={onAddToBagClick}
+              // onAddBagClick={handleAddBagClick}
             />
           )}
           {/* <ProductCard /> */}

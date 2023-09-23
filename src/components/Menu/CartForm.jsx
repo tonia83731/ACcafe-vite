@@ -11,60 +11,60 @@ export default function CartForm({ formData, onFormChange }) {
           <div>
             <div className="grid gap-2 grid-cols-2">
               <div>
-                <label htmlFor="first-name" className="font-medium">
-                  First Name
+                <label htmlFor="cart-name" className="font-medium">
+                  Full Name <span className="text-error">*</span>
                 </label>
                 <input
                   type="text"
-                  name="firstname"
+                  name="name"
                   className="w-full rounded px-4 bg-white-80 focus:border-2 focus:border-grullo-80"
-                  id="first-name"
+                  id="cart-name"
                   placeholder=""
-                  value={formData.firstname}
+                  value={formData.name}
                   onChange={onFormChange}
                   required
                 />
               </div>
               <div>
-                <label htmlFor="last-name" className="">
-                  Last Name
+                <label htmlFor="cart-tel" className="">
+                  Phone Number <span className="text-error">*</span>
                 </label>
                 <input
-                  type="text"
-                  name="lastname"
+                  type="tel"
+                  name="tel"
                   className="w-full rounded px-4 bg-white-80 focus:border-2 focus:border-grullo-80"
-                  id="last-name"
+                  id="cart-tel"
                   placeholder=""
-                  value={formData.lastname}
+                  value={formData.tel}
                   onChange={onFormChange}
                   required
                 />
               </div>
             </div>
             <div className="mt-2">
-              <label htmlFor="phoneNum" className="font-medium">
-                Phone Number
+              <label htmlFor="cart-email" className="font-medium">
+                Email <span className="text-error">*</span>
               </label>
               <input
-                type="tel"
-                name="phoneNum"
+                type="email"
+                name="email"
                 className="w-full rounded px-4 bg-white-80 focus:border-2 focus:border-grullo-80"
-                id="phoneNum"
+                id="cart-email"
                 placeholder=""
-                value={formData.phoneNum}
+                value={formData.email}
                 onChange={onFormChange}
                 required
               />
             </div>
             <div className="mt-2">
-              <label htmlFor="address" className="font-medium">
-                Address
+              <label htmlFor="cart-address" className="font-medium">
+                Address <span className="text-error">*</span>
               </label>
               <input
                 type="text"
                 name="address"
                 className="w-full rounded px-4 bg-white-80 focus:border-2 focus:border-grullo-80"
-                id="address"
+                id="cart-address"
                 placeholder=""
                 value={formData.address}
                 onChange={onFormChange}
