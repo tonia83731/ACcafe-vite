@@ -19,23 +19,23 @@ export default function Cart({ props, onRemoveClick, priceData, formData, onForm
   const [cartData, setCartData] = useState([]);
 
   
-  const handleCartSubmit = (e) => {
-    e.preventDefault();
-    if (state.length === 0) return;
-    Swal.fire({
-      icon: "success",
-      title: "Your order has been submitted",
-      showConfirmButton: false,
-      timer: 1500,
-    });
-    setFormData({
-      name: "",
-      tel: "",
-      email: "",
-      address: "",
-    });
-    dispatch({ type: "Clear" });
-  };
+  // const handleCartSubmit = (e) => {
+  //   e.preventDefault();
+  //   if (state.length === 0) return;
+  //   Swal.fire({
+  //     icon: "success",
+  //     title: "Your order has been submitted",
+  //     showConfirmButton: false,
+  //     timer: 1500,
+  //   });
+  //   setFormData({
+  //     name: "",
+  //     tel: "",
+  //     email: "",
+  //     address: "",
+  //   });
+  //   dispatch({ type: "Clear" });
+  // };
   // const handleRemoveClick = async (id) => {
   //   console.log(id);
   //   try {
@@ -65,7 +65,7 @@ export default function Cart({ props, onRemoveClick, priceData, formData, onForm
         </div>
         <div className="grid gap-4 grid-rows-2 breakpoint:grid-rows-none breakpoint:grid-cols-2">
           <CartList props={props} onRemoveClick={onRemoveClick} />
-          <form className="grid gap-2 grid-rows-2" onSubmit={handleCartSubmit}>
+          <form className="grid gap-2 grid-rows-2" onSubmit={onCartSubmit}>
             <CartForm onFormChange={onFormChange} formData={formData} />
             <CartSummary prop={priceData} />
           </form>

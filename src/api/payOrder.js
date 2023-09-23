@@ -5,9 +5,10 @@ export const payOrder = async (payload) => {
     const res = await axios.post(
       `${import.meta.env.VITE_APP_API}/api/${
         import.meta.env.VITE_APP_PATH
-      }/order`, payload
+      }/order`,
+      payload
     );
-    return res;
+    return res.data;
   } catch (error) {
     console.error("[Order complete failed]:", error);
   }

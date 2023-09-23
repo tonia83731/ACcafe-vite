@@ -12,9 +12,9 @@ export default function MenuPage({ onAddWishClick, isWish }) {
   const [cartData, setCartData] = useState([]);
   const [priceData, setPriceData] = useState([])
   const [formData, setFormData] = useState({
-    firstname: "",
-    lastname: "",
-    phoneNum: "",
+    name: "",
+    tel: "",
+    email: "",
     address: "",
   });
   const handleAddToBagCick = async (id, value) => {
@@ -57,6 +57,28 @@ export default function MenuPage({ onAddWishClick, isWish }) {
     const value = e.target.value;
     setFormData((prevData) => ({ ...prevData, [name]: value }));
   };
+  const handleCartSubmit = async (e) => {
+    e.preventDefault();
+    // if (state.length === 0) return;
+    const res = await payOrder({
+      data: {user: formData}
+    })
+    if(res.success){
+      Swal.fire({
+        icon: "success",
+        title: "Your order has been submitted",
+        showConfirmButton: false,
+        timer: 1500,
+      });
+      setFormData({
+        name: "",
+        tel: "",
+        email: "",
+        address: "",
+      });
+      setCartData([])
+    }
+  };
   console.log(formData)
   // console.log(priceData);
   useEffect(() => {
@@ -77,7 +99,7 @@ export default function MenuPage({ onAddWishClick, isWish }) {
       <Header props={cartData}/>
       <main className="">
         <Product onAddWishClick={onAddWishClick} isWish={isWish} onAddToBagClick={handleAddToBagCick}/>
-        <Cart props={cartData} formData={formData} onFormChange={handleFormChange} onRemoveClick={handleRemoveClick} priceData={priceData}/>
+        <Cart props={cartData} formData={formData} onFormChange={handleFormChange} onCartSubmit={handleCartSubmit} onRemoveClick={handleRemoveClick} priceData={priceData}/>
       </main>
       <Footer/>
     </>

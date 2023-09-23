@@ -16,7 +16,7 @@ export const getOrderList = async (page) => {
   }
 };
 
-export const deleteProduct = async (id) => {
+export const deleteOrder= async (id) => {
   try {
     const res = await axios.delete(
       `${import.meta.env.VITE_APP_API}/api/${
@@ -29,7 +29,7 @@ export const deleteProduct = async (id) => {
   }
 };
 
-export const deleteAllProduct = async () => {
+export const deleteAllOrder = async () => {
   try {
     const res = await axios.delete(
       `${import.meta.env.VITE_APP_API}/api/${
