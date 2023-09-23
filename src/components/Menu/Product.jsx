@@ -4,8 +4,9 @@ import ProductList from "./ProductList";
 import Pagination from "../Others/Pagination";
 
 import { dummyProductData } from "../../data/ProductData";
+import { getFrontProductList } from "../../api/getFrontProductList";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import useCartContext from "../../hooks/useCartContext";
 import useWishContext from "../../hooks/useWishContext";
 
@@ -69,6 +70,16 @@ export default function Product({ onAddWishClick, isWish }) {
   const handleAddWishClick = (id) => {
     console.log(id);
   };
+
+  useEffect(() => {
+    const getFrontProductListAsync = async () => {
+      const res = await getFrontProductList()
+      const data = res.products
+      console.log(data)
+    }
+    getFrontProductListAsync()
+  }, [])
+
 
   // console.log(productList);
   return (

@@ -7,7 +7,7 @@ export const getFrontProductList = async () => {
         import.meta.env.VITE_APP_PATH
       }/products/all`
     );
-    return res;
+    return res.data;
   } catch (error) {
     console.error("[Get front product list failed]:", error);
   }

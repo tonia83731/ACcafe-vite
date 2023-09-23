@@ -3,42 +3,53 @@ import NewsList from "../components/News/NewsList";
 import NewsModal from "../components/News/NewsModal";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
-
+import { getFrontNewsList, getFrontOneNewsList } from "../api/getFrontNewsList";
 import { dummyNewsData } from "../data/NewsData";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 
 export default function NewsPage() {
-  const [newsData, setNewsData] = useState(dummyNewsData);
+  const [newsData, setNewsData] = useState([]);
+  const [filterData, setFilterData] = useState([])
+  const [pageData, setPageData] = useState(null)
   const [modalToggle, setModalToggle] = useState(false)
   const [modalContent, setModalContent] = useState([])
   const [currentPage, setCurrentPage] = useState(1);
+  const [totalPage, setTotalPage] = useState(0)
 
+  // const totalPage = pageData.total_pages
+  // const numbers = [...Array(totalPage).keys()].map((i) => i + 1);
+  
   const newsPerPage = 8;
   const lastIndex = currentPage * newsPerPage;
   const firstIndex = lastIndex - newsPerPage;
-  const news = newsData.slice(firstIndex, lastIndex);
-  const npage = Math.ceil(newsData.length / newsPerPage);
+  const news = filterData.slice(firstIndex, lastIndex);
+  const npage = Math.ceil(filterData.length / newsPerPage);
   const numbers = [...Array(npage + 1).keys()].slice(1);
 
   const handleOptionChange = (id) => {
-    const SortByTime = dummyNewsData.sort(
+    const SortByTime = newsData.sort(
       (a, b) => a.publish_date - b.publish_date
     );
-    if (id === "all") {
-      return setNewsData(SortByTime);
+
+    if (id === "All") {
+      setFilterData(SortByTime);
     } else {
       const newsType = SortByTime.filter((data) =>
-        data.type.toLowerCase().includes(id)
+        data.author === id
       );
-
-      return setNewsData(newsType);
+      setFilterData(newsType);
     }
   }
-  const handleNewsModalClick = (id) => {
-    const filterContent = dummyNewsData.filter((prop) => prop.id === id)
-    setModalContent(filterContent)
+  const handleNewsModalClick = async (id) => {
+    // const filterContent = dummyNewsData.filter((prop) => prop.id === id)
+    const res = await getFrontOneNewsList(id)
+    const data = res.data.article
+    // console.log(data);
+    setModalContent([data])
+    // console.log(modalContent)
+    // setModalContent(filterContent)
     setModalToggle(true)
   }
   const handleNextClick = () => {
@@ -52,9 +63,40 @@ export default function NewsPage() {
     }
   }
 
-  const handlePageClick = (page) => {
+  const handlePageClick = async (page) => {
     setCurrentPage(page)
   }
+
+  useEffect(() => {
+    const getFrontNewsListAsync = async () => {
+      let page = 1;
+      let allNews = [];
+      let hasMoreData = true
+
+      while (hasMoreData) {
+        try {
+          const res = await getFrontNewsList(page);
+          const newsOnPage = res.articles;
+          const totalPage = res.pagination.total_pages
+          if (page > totalPage) {
+            hasMoreData = false;
+            break;
+          } else {
+            allNews = [...allNews, ...newsOnPage];
+            page++;
+          }
+        } catch (error) {
+          console.error(error);
+          break;
+        }
+      }
+      // console.log(allNews)
+      setNewsData(allNews)
+      setFilterData(allNews)
+    }
+    getFrontNewsListAsync()
+  }, [])
+  console.log(newsData)
 
   return (
     <>

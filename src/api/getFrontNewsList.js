@@ -7,9 +7,9 @@ export const getFrontNewsList = async (page) => {
         import.meta.env.VITE_APP_PATH
       }/articles?page=${page}`
     );
-    return res;
+    return res.data
   } catch (error) {
-    console.error("[Get product list failed]:", error);
+    console.error("[Get news list failed]:", error);
   }
 };
 
@@ -20,7 +20,8 @@ export const getFrontOneNewsList = async (id) => {
         import.meta.env.VITE_APP_PATH
       }/article/${id}`
     )
+    return res
   } catch (error) {
-    console.error("[Get front one product failed]:", error);
+    console.error("[Get front one news failed]:", error);
   }
 }

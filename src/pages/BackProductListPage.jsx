@@ -171,7 +171,6 @@ export default function BackProductListPage() {
       const res = await getProductList();
       // console.log(data.data.products)
       const datas = res.data.products;
-      // console.log(datas)
       const value = Object.values(datas);
       // console.log(value)
       setProductData(value);

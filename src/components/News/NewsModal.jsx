@@ -1,4 +1,4 @@
-
+import convertNumberToTime from "../../utilites/convertNumberToTime";
 
 
 export default function NewsModal({props, onModalClick}){
@@ -9,28 +9,30 @@ export default function NewsModal({props, onModalClick}){
       </button>
       {props.map((prop) => {
         return (
-          <div className="desktop:grid desktop:gap-4 desktop:grid-cols-2" key={prop.id}>
+          <div
+            className="desktop:grid desktop:gap-4 desktop:grid-cols-2"
+            key={prop.id}
+          >
             <img
-              src={prop.url}
+              src={prop.image}
               alt=""
               className="w-full h-60 object-cover object-center desktop:h-48"
             />
             <div className="mt-1 desktop:mt-0">
-              <div className="title font-bold text-lg">
-                {prop.title}
-              </div>
+              <div className="title font-bold text-lg">{prop.title}</div>
               <div className="">
                 <p className="font-medium">
-                  Event Date: <span className="font-normal">{prop.event_date}</span>
+                  Event Date:
+                  <span className="font-normal">
+                    {convertNumberToTime(prop.create_at)}
+                  </span>
                 </p>
                 <p className="font-medium">
-                  Location: <span className="font-normal">{prop.location}</span>
+                  Location: <span className="font-normal">{prop.content}</span>
                 </p>
                 <div className="">
                   <p className="font-medium">Description</p>
-                  <p className="">
-                    {prop.description}
-                  </p>
+                  <p className="">{prop.description}</p>
                 </div>
               </div>
             </div>

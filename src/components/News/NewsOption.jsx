@@ -3,27 +3,27 @@ import nextId from "react-id-generator";
 
 const newsOptionData = [
   {
-    id: "all",
+    id: "All",
     name: "All Events",
   },
   {
-    id: "storewide",
+    id: "Storewide",
     name: "Storewide Events",
   },
   {
-    id: "branch",
+    id: "Branch",
     name: "Branch Events",
   },
   {
-    id: "membership",
+    id: "Membership",
     name: "Membership",
   },
   {
-    id: "collaboration",
+    id: "Collaboration",
     name: "Collaborations",
   },
   {
-    id: "other",
+    id: "Other",
     name: "Others",
   },
 ];
@@ -38,7 +38,7 @@ export default function NewsOption({onOptionsChange}) {
           name="news"
           id={item.id}
           value={item.id}
-          defaultChecked={item.id === "all"}
+          defaultChecked={item.id === "All"}
           onChange={() => onOptionsChange?.(item.id)}
         />
         <label

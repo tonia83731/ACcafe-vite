@@ -1,5 +1,6 @@
 import { dummyNewsData } from "../../data/NewsData";
 import Pagination from "../Others/Pagination";
+import convertNumberToTime from "../../utilites/convertNumberToTime";
 
 export default function NewsList({
   props,
@@ -27,7 +28,7 @@ export default function NewsList({
                 {item.title}
               </button>
               <p className="news-item-date">
-                Event date: <span className="news-date">{item.event_date}</span>
+                Event date: <span className="news-date">{convertNumberToTime(item.create_at)}</span>
               </p>
             </li>
           );
