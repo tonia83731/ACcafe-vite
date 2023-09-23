@@ -3,6 +3,7 @@ import { GreenBtn } from "../Others/Button";
 import { useState } from "react";
 import useCartContext from "../../hooks/useCartContext";
 import useWishContext from "../../hooks/useWishContext";
+import ProductIcon from "./ProductIcon";
 
 export function ProductCardItem({
   prop
@@ -21,15 +22,15 @@ export function ProductCardItem({
   return (
     <div className="rounded-lg drop-shadow-lg bg-white-100 h-[440px]">
       <img
-        src={prop.imgUrl}
-        alt={prop.name}
+        src={prop.imageUrl}
+        alt={prop.title}
         className="w-full h-4/6 min-h-[300px] object-cover object-bottom rounded-t-lg"
       />
       <div className="pt-1 px-2">
         <div className="h-[80px] mt-1 mb-1.5">
           <div className="flex">
-            <span className="product-icon">{prop.class}</span>
-            <span className="text-xl font-medium ml-2">{prop.name}</span>
+            <span className="product-icon"><ProductIcon prop={prop.unit}/></span>
+            <span className="text-xl font-medium ml-2">{prop.title}</span>
           </div>
           <div className="">$ {prop.price}</div>
         </div>

@@ -1,6 +1,7 @@
 import { ReactComponent as Food } from "../../assets/icon/menu/food.svg";
 import { ReactComponent as Delete } from "../../assets/icon/nav_icon/delete.svg";
 import useWishContext from "../../hooks/useWishContext";
+import ProductIcon from "../Menu/ProductIcon";
 
 export function WishListItem({ prop }) {
   const wishInfo = useWishContext();
@@ -9,14 +10,16 @@ export function WishListItem({ prop }) {
   return (
     <li className="px-4 my-2 grid gap-4 grid-cols-7">
       <img
-        src={prop.imgUrl}
-        alt={prop.name}
+        src={prop.imageUrl}
+        alt={prop.title}
         className="w-20 h-20 object-cover object-bottom col-span-1"
       />
       <div className="col-start-2 col-span-5">
         <div className="flex items-center leading-normal">
-          <span className="product-icon mr-2">{prop.class}</span>
-          {prop.name}
+          <span className="product-icon mr-2">
+            <ProductIcon prop={prop.unit} />
+          </span>
+          {prop.title}
         </div>
         <div className="">${prop.price}</div>
       </div>

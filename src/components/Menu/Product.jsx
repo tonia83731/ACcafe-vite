@@ -18,7 +18,7 @@ export default function Product({ onAddWishClick, isWish }) {
 
   const [mode, setMode] = useState("grid");
   const [searchValue, setSearchValue] = useState("");
-  const [productList, setProductList] = useState(dummyProductData);
+  const [productList, setProductList] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
 
   const productPerPage = 8;
@@ -36,7 +36,7 @@ export default function Product({ onAddWishClick, isWish }) {
 
   // search input
   const handleProductChange = (value) => {
-    console.log(value);
+    // console.log(value);
     setSearchValue(value);
     // console.log(searchInput)
   };
@@ -44,7 +44,8 @@ export default function Product({ onAddWishClick, isWish }) {
     e.preventDefault();
     if (searchValue === "") return;
     const filterProduct = productList.filter((item) =>
-      item.name.toLowerCase().trim().includes(searchValue.toLowerCase().trim())
+      // console.log(item.title.toLowerCase().trim())
+      item.title.toLowerCase().trim().includes(searchValue.toLowerCase().trim())
     );
 
     if (filterProduct.length === 0) return;
@@ -75,7 +76,8 @@ export default function Product({ onAddWishClick, isWish }) {
     const getFrontProductListAsync = async () => {
       const res = await getFrontProductList()
       const data = res.products
-      console.log(data)
+      // console.log(data)
+      setProductList(data)
     }
     getFrontProductListAsync()
   }, [])

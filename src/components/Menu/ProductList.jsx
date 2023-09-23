@@ -2,6 +2,7 @@ import { dummyProductData } from "../../data/ProductData";
 import { GreenBtn } from "../Others/Button";
 import useCartContext from "../../hooks/useCartContext";
 import useWishContext from "../../hooks/useWishContext";
+import ProductIcon from "./ProductIcon";
 
 export function ProductListItem({ prop }) {
   const info = useCartContext();
@@ -18,8 +19,10 @@ export function ProductListItem({ prop }) {
     <div className="grid gap-4 grid-cols-5 items-center border-b-2 border-grullo-60 px-2 py-1 hover:bg-black-5">
       <div className="col-span-3 breakpoint2:col-span-3 tablet:flex tablet:justify-between">
         <div className="flex">
-          <span className="product-icon">{prop.class}</span>
-          <span className="text-xl font-medium ml-2">{prop.name}</span>
+          <span className="product-icon">
+            <ProductIcon prop={prop.unit} />
+          </span>
+          <span className="text-xl font-medium ml-2">{prop.title}</span>
         </div>
         <div className="tablet:pr-8">${prop.price}</div>
       </div>
