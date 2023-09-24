@@ -77,7 +77,7 @@ https://tonia83731.github.io/ACcafe-vite/
 7. NewsPage: NewsList and could filter through button group
 8. NewsPage: News modal to show detail information
 
-![Alt text](src/assets/img/rm_Tablet.png)
+![Alt text](src/assets/img/rm_Tablet_new-02.png)
 
 ## Develp Environment and Tools
 
