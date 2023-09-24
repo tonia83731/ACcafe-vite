@@ -15,25 +15,31 @@ export const getFrontProductCartList = async () => {
 
 export const addToCart = async (payload) => {
   try {
-    const res = await axios.post(`${import.meta.env.VITE_APP_API}/api/${
+    const res = await axios.post(
+      `${import.meta.env.VITE_APP_API}/api/${
         import.meta.env.VITE_APP_PATH
-      }/cart`, payload)
-      return res.data
+      }/cart`,
+      payload
+    );
+    return res.data;
   } catch (error) {
     console.error("[Add product to cart failed]:", error);
   }
-}
+};
 
-export const updateCart = async (id) => {
+export const updateCart = async (id, payload) => {
   try {
-    const res = await axios.put(`${import.meta.env.VITE_APP_API}/api/${
+    const res = await axios.put(
+      `${import.meta.env.VITE_APP_API}/api/${
         import.meta.env.VITE_APP_PATH
-      }/cart/${id}`)
-      return res
-  } catch (error){
+      }/cart/${id}`,
+      payload
+    );
+    return res.data;
+  } catch (error) {
     console.error("[Update cart failed]:", error);
   }
-}
+};
 
 export const deleteOneCartProduct = async (id) => {
   try {
@@ -46,4 +52,4 @@ export const deleteOneCartProduct = async (id) => {
   } catch (error) {
     console.error("[Delete cart failed]:", error);
   }
-}
+};

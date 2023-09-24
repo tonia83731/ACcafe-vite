@@ -8,9 +8,10 @@ import { GreenBtn } from "../components/Others/Button";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { useAuth } from "../context/LoginContext";
+import { useNavigate } from "react-router-dom";
 
 export default function BackProductListPage() {
-  // const navigate = useNavigate();
+  const navigate = useNavigate();
   const {username, password} = useAuth()
   const [formData, setFormData] = useState({
     title: '',

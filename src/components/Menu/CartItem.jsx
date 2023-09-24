@@ -29,6 +29,7 @@ export default function CartItem({prop, onPlusClick, onMinusClick, onRemoveClick
               className="w-3/12 bg-white-40 text-olive-60 rounded text-center mx-2"
               pattern="[0-9]*"
               value={prop.qty}
+              // onChange={onEditCartItemChange}
               disabled
             />
             <button

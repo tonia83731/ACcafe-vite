@@ -54,6 +54,7 @@ export default function BackProductOrderPage() {
       setOrderData((prevOrder) => {
         prevOrder.filter((order) => order.id !== id);
       });
+      window.location.reload();
     } catch (error) {
       console.error(error);
     }
@@ -105,7 +106,7 @@ export default function BackProductOrderPage() {
                   </ul>
                 </td>
                 <td className="py-2 text-start">
-                  <ul>
+                  <ul key={order.id}>
                     {values.map((product) => {
                       return (
                         <>

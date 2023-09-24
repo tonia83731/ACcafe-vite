@@ -13,14 +13,8 @@ export default function CartList({ props, onPlusClick, onMinusClick, onRemoveCli
           <CartItem
             prop={prop}
             key={prop.id}
-            onPlusClick={() => dispatch({ type: "Increase", payload: prop })}
-            onMinusClick={() => {
-              if (prop.quantity > 1) {
-                dispatch({ type: "Decrease", payload: prop });
-              } else {
-                dispatch({ type: "Remove", payload: prop });
-              }
-            }}
+            onPlusClick={onPlusClick}
+            onMinusClick={onMinusClick}
             onRemoveClick={onRemoveClick}
           />
         );

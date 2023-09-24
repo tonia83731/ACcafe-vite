@@ -12,7 +12,7 @@ import {
 
 import Swal from "sweetalert2";
 
-export default function Cart({ props, onRemoveClick, priceData, formData, onFormChange , onCartSubmit }) {
+export default function Cart({ props, onPlusClick, onMinusClick, onRemoveClick, priceData, formData, onFormChange , onCartSubmit }) {
   const info = useCartContext();
   const state = info.state;
   const dispatch = info.dispatch;
@@ -64,7 +64,12 @@ export default function Cart({ props, onRemoveClick, priceData, formData, onForm
           Shopping Bag
         </div>
         <div className="grid gap-4 grid-rows-2 breakpoint:grid-rows-none breakpoint:grid-cols-2">
-          <CartList props={props} onRemoveClick={onRemoveClick} />
+          <CartList
+            props={props}
+            onRemoveClick={onRemoveClick}
+            onPlusClick={onPlusClick}
+            onMinusClick={onMinusClick}
+          />
           <form className="grid gap-2 grid-rows-2" onSubmit={onCartSubmit}>
             <CartForm onFormChange={onFormChange} formData={formData} />
             <CartSummary prop={priceData} />
