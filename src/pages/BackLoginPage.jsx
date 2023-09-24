@@ -7,14 +7,17 @@ import { checkPermission } from "../api/admin";
 import { Link, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import axios from "axios";
+import { useAuth } from "../context/LoginContext";
 
 export default function BackLoginPage() {
   const navigate = useNavigate();
   const [username, setUsername] = useState("")
   const [password, setPassWord] = useState("")
+  const {login} = useAuth()
 
   const handleLoginSubmit = async (event) => {
     event.preventDefault();
+    login(username, password)
     if (username.length === 0 || password.length === 0) return;
     const { success, token } = await signin({
       username,

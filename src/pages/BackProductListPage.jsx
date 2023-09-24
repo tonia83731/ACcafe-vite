@@ -1,13 +1,17 @@
 import { getProductList, createProduct, deleteProduct, editProduct } from "../api/getProductList";
+import { checkPermission } from "../api/admin";
 // import { checkPermission } from "../api/admin";
 import HeaderBack from "../components/HeaderBack";
 import Pagination from "../components/Others/Pagination";
 import EditModal from "../components/Others/EditModal";
 import { GreenBtn } from "../components/Others/Button";
 import { useEffect, useState } from "react";
+import axios from "axios";
+import { useAuth } from "../context/LoginContext";
 
 export default function BackProductListPage() {
   // const navigate = useNavigate();
+  const {username, password} = useAuth()
   const [formData, setFormData] = useState({
     title: '',
     description: '',
@@ -175,6 +179,22 @@ export default function BackProductListPage() {
       // console.log(value)
       setProductData(value);
     };
+    const checkTokenIsValid = async () => {
+      const authToken = localStorage.getItem("token");
+      // console.log(authToken)
+      axios.defaults.headers.common["Authorization"] = authToken;
+      const result = await checkPermission({
+        username, password
+      });
+      console.log(result)
+      if (result) {
+        navigate("/ACcafe-vite/back-products");
+      } else {
+        navigate("/ACcafe-vite/back-login");
+      }
+      // navigate("/ACcafe-vite/back-login");
+    };
+    checkTokenIsValid();
     getProductListAsync();
   }, []);
   // console.log(productData);

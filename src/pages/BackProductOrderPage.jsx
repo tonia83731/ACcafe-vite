@@ -1,74 +1,75 @@
-import HeaderBack from "../components/HeaderBack"
+import HeaderBack from "../components/HeaderBack";
 import { useState, useEffect } from "react";
-import { getOrderList, deleteOrder, deleteAllOrder } from "../api/getOrderList";
+import { getOrderList, deleteOrder } from "../api/getOrderList";
 import Pagination from "../components/Others/Pagination";
 
-export default function BackProductOrderPage(){
+export default function BackProductOrderPage() {
+  const [pagination, setPagination] = useState(null);
   const [currentPage, setCurrentPage] = useState(1);
-  const [orderData, setOrderData] = useState([])
-  const pageLength = orderData?.length;
-  const product_per_page = 4;
-  const nPage = Math.ceil(pageLength / product_per_page);
-  const numbers = [...Array(nPage + 1).keys()].slice(1);
-  const lastIndex = currentPage * product_per_page;
-  const firstIndex = lastIndex - product_per_page;
-  const order = orderData.slice(firstIndex, lastIndex);
+  const [orderData, setOrderData] = useState([]);
+  const [allData, setAllData] = useState([]);
+  const totalPage = pagination?.total_pages;
+  const numbers = [...Array(totalPage).keys()].map((i) => i + 1);
 
-   const handleNextClick = () => {
-     if (currentPage !== 1) {
-       return setCurrentPage(currentPage - 1);
-     }
-   };
-   const handlePrevClick = () => {
-     if (currentPage !== nPage) {
-       return setCurrentPage(currentPage + 1);
-     }
-   };
-   const handlePageClick = (page) => {
-     setCurrentPage(page);
-   };
-   const handleDeleteOneOrder = async (id) => {
-      console.log(id)
-    try {
-      await deleteOrder(id)
-      setOrderData((prevOrder) => {
-        prevOrder.filter((order) => order.id !== id)
-      })
-    } catch (error){
-      console.error(error)
+  const handleNextClick = async () => {
+    const page = currentPage - 1;
+    if (currentPage !== 1) {
+      setCurrentPage(currentPage - 1);
     }
-   }
+    try {
+      const res = await getOrderList(page);
+      const datas = res.data.orders;
+      setOrderData(datas);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+  const handlePrevClick = async () => {
+    const page = currentPage + 1;
+    if (currentPage !== totalPage) {
+      setCurrentPage(currentPage + 1);
+    }
+    try {
+      const res = await getOrderList(page);
+      const datas = res.data.orders;
+      setOrderData(datas);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+  const handlePageClick = async (page) => {
+    setCurrentPage(page);
+    try {
+      const res = await getOrderList(page);
+      const datas = res.data.orders;
+      setOrderData(datas);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+  const handleDeleteOneOrder = async (id) => {
+    // console.log(id);
+    try {
+      await deleteOrder(id);
+      setOrderData((prevOrder) => {
+        prevOrder.filter((order) => order.id !== id);
+      });
+    } catch (error) {
+      console.error(error);
+    }
+  };
 
   useEffect(() => {
     const getOrderListAsync = async () => {
-      let page = 1
-      let allOrders = []
-      let hasMoreData = true
-      while (hasMoreData) {
-        try {
-          const res = await getOrderList()
-          const ordersOnPage = res.data.orders
-          const totalPage = res.data.pagination.total_pages
-          if(page > totalPage) {
-            hasMoreData = false
-            break
-          } else {
-            allOrders = [...allOrders, ...ordersOnPage]
-            page++
-          }
-        } catch (error) {
-          console.error(error)
-          break
-        }
-      }
-      // console.log(allOrders)
-      setOrderData(allOrders)
-      // const res = await getOrderList()
-      // const data = res.data.orders
-      // setOrderData(data)
-    }
+      const res = await getOrderList();
+      const orders = res.data.orders;
+      const pages = res.data.pagination;
+      console.log(orders)
+      setOrderData(orders);
+      setPagination(pages);
+    };
     getOrderListAsync();
-  }, [])
+  }, []);
 
   // console.log(orderData)
   return (
@@ -84,7 +85,7 @@ export default function BackProductOrderPage(){
             <th className="">Paid Status</th>
             <th className="">Delete</th>
           </tr>
-          {order.map((order) => {
+          {orderData?.map((order) => {
             const product = order.products;
             const values = Object.values(product);
             // console.log(values)
@@ -121,7 +122,10 @@ export default function BackProductOrderPage(){
                   {order.is_paid === true ? "Paid" : "Unpaid"}
                 </td>
                 <td className="py-2">
-                  <button className="rounded px-3 py-1 text-xs bg-grullo-100 hover:font-bold tablet:text-sm text-white-100 ml-1" onClick={() => handleDeleteOneOrder?.(order.id)}>
+                  <button
+                    className="rounded px-3 py-1 text-xs bg-grullo-100 hover:font-bold tablet:text-sm text-white-100 ml-1"
+                    onClick={() => handleDeleteOneOrder?.(order.id)}
+                  >
                     Delete
                   </button>
                 </td>

@@ -28,16 +28,3 @@ export const deleteOrder= async (id) => {
     console.error("[Delete one order failed]", error);
   }
 };
-
-export const deleteAllOrder = async () => {
-  try {
-    const res = await axios.delete(
-      `${import.meta.env.VITE_APP_API}/api/${
-        import.meta.env.VITE_APP_PATH
-      }/admin/orders/all`
-    );
-    return res.data;
-  } catch (error) {
-    console.error("[Delete all order failed]", error);
-  }
-};

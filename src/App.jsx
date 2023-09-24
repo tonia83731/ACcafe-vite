@@ -11,38 +11,41 @@ import BackProductOrderPage from "./pages/BackProductOrderPage";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { CartProvider } from "./context/CartContext";
 import { WishProvider } from "./context/WishContext";
+import { AuthProvider } from "./context/LoginContext";
 
 function App() {
   return (
     <>
       <div id="app" className="text-sm tablet:text-base">
-        <CartProvider>
-          <WishProvider>
-            <BrowserRouter>
-              <Routes>
-                <Route path="/ACcafe-vite/" element={<HomePage />} />
-                <Route path="/ACcafe-vite/menu" element={<MenuPage />} />
-                <Route path="/ACcafe-vite/news" element={<NewsPage />} />
-                <Route
-                  path="/ACcafe-vite/back-login"
-                  element={<BackLoginPage />}
-                />
-                <Route
-                  path="/ACcafe-vite/back-products"
-                  element={<BackProductListPage />}
-                />
-                <Route
-                  path="/ACcafe-vite/back-news"
-                  element={<BackProductNewsPage />}
-                />
-                <Route
-                  path="/ACcafe-vite/back-orders"
-                  element={<BackProductOrderPage />}
-                />
-              </Routes>
-            </BrowserRouter>
-          </WishProvider>
-        </CartProvider>
+        <AuthProvider>
+          <CartProvider>
+            <WishProvider>
+              <BrowserRouter>
+                <Routes>
+                  <Route path="/ACcafe-vite/" element={<HomePage />} />
+                  <Route path="/ACcafe-vite/menu" element={<MenuPage />} />
+                  <Route path="/ACcafe-vite/news" element={<NewsPage />} />
+                  <Route
+                    path="/ACcafe-vite/back-login"
+                    element={<BackLoginPage />}
+                  />
+                  <Route
+                    path="/ACcafe-vite/back-products"
+                    element={<BackProductListPage />}
+                  />
+                  <Route
+                    path="/ACcafe-vite/back-news"
+                    element={<BackProductNewsPage />}
+                  />
+                  <Route
+                    path="/ACcafe-vite/back-orders"
+                    element={<BackProductOrderPage />}
+                  />
+                </Routes>
+              </BrowserRouter>
+            </WishProvider>
+          </CartProvider>
+        </AuthProvider>
       </div>
     </>
   );
