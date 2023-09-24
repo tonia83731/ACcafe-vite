@@ -33,15 +33,11 @@ export default function MenuPage({ onAddWishClick, isWish }) {
       const data = await addToCart({
         data: addData
       })
-      setCartData((prev) => {
-        return [
-          ...prev,
-          data.data
-        ]
-      })
       const res = await getFrontProductCartList();
+      const datas = res.data.carts;
       const total = res.data.total;
       const final_total = res.data.final_total;
+      setCartData(datas);
       setPriceData({
         total: total,
         final_total: final_total,
