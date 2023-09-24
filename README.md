@@ -54,10 +54,16 @@ https://tonia83731.github.io/ACcafe-vite/
 2. 2 MenuPage: Product show by list
 3. Wish list show by hover
 4. Bag lsit show by hover
-5. NewsPage: NewsList and could filter through button group
-6. NewsPage: News modal to show detail information
+5. 1 NewsPage: NewsList and could filter through button group
+5. 2 NewsPage: News modal to show detail information
+6. BackStageLoginPage: User needs to fill in username and password to login
+7. 1 BackProductListPage: Product show by table with category, title, cost , price
+7. 2 BackProductListPage: Click on "Add New Product" or "Edit" will show popup form for add new product or edit
+8. 1 BackNewsListPage: News show by table with category, title, event date and publish status
+8. 2 BackNewsListPage: Click on "Add News" or "Edit" will show popup form for add new news or edit
+9. BackOrderListPage: Orders show by table with no., user information, product list, total price, paid status
 
-![Alt text](src/assets/img/rm_Desktop.png)
+![Alt text](src/assets/img/rm_Desktop_new-01.png)
 
 ## Demo Feature (Mobile)
 1. HomePage:　#HomeBanner
