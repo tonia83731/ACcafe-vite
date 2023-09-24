@@ -4,17 +4,12 @@ ACcafe is a Online Food Ordering platform.
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
-Currently, two official plugins are available:
-
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
-
 Project development before create by react + vite : https://github.com/tonia83731/sideproject_ACcafe.git
 
 
 ## Introduction
 
-This project is available on mobile, tablet and desktop.
+This project' FrontStage is available on mobile, tablet and desktop.
 
 * Homepage
   * Users are available to view the newest information through banner.
@@ -23,16 +18,31 @@ This project is available on mobile, tablet and desktop.
   * User could see all the product information in Menupage
     * User could see product in both card and list mode
     * User could search items through search bar
-  * Users could click on "Add to Cart" button to add items into the Shopping bag
+  * Users could choose the quantity and click on "Add to Cart" button to add items into the Shopping bag
   * Users could click on "Add Wish" button to add items into the Wish list
-  * User could plus/minus the items at "Shopping Bat" section
-  * The Order Summary will include total price, tax and devliery price
+  * User could plus/minus the items at "Shopping Bag" section
+  * The Order Summary will include total price and devliery price
   * The users must fill in "Recipient Info." to submit their order
   * By hovering the like and bag icon on header, user could view their wishlist and bagitem
 * NewsPage
   * User could see all the news in the NewsPage
   * User could filter the news by clicking on the button group
   * By clicking on the news list title, the screen will popup for further information
+
+The project's BackStage is only available on desktop, will not open to the public.
+* BackLoginPage
+  * To login, user must fill in username(email) and password
+* BackProductListPage
+  * Users could view the product list 
+  * Users could add, edit, delete prouduct list item.
+* BackProductNewsPage
+  * Users could view the news list 
+  * Users could add, edit, delete news list item
+* BackProductOrderPage
+  * Users could view the order list 
+  * Users could delete list item
+* Others
+  * To logout, click logout icon on back header, than will lead back to login page 
 
 ## Demo Page Link
 https://tonia83731.github.io/ACcafe-vite/
@@ -89,7 +99,7 @@ npm install
 3. Start the project by enter:
 
 ```
-npm start
+npm run dev
 ```
 
 4. If you wish to end the project, enter:
