@@ -94,7 +94,7 @@ https://tonia83731.github.io/ACcafe-vite/
 1. Clone the project to local, enter:
 
 ```
-git clone https://github.com/tonia83731/ACcaf--vite.git
+git clone https://github.com/tonia83731/ACcafe-vite.git
 ```
 
 2. Go into the project(cd), later enter to install npm:
