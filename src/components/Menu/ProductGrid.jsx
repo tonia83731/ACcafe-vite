@@ -28,28 +28,6 @@ export function ProductCardItem({
   const handlePlusClick = () => {
     setInputValue(inputValue + 1)
   }
-  // const handleAddBagClick = async (id) => {
-  //   // console.log(id)
-  //   // console.log(inputValue)
-  //   const product_id = id
-  //   const quantity = inputValue === 0 ? 1 : inputValue
-  //   const addData = {
-  //     product_id: product_id,
-  //     qty: quantity,
-  //   }
-
-  //   try {
-  //     const data = await addToCart({
-  //       data: addData
-  //     })
-  //     if(data.success){
-  //       setInputValue(0)
-  //     }
-  //     console.log(data)
-  //   } catch (error) {
-  //     console.error(error)
-  //   }
-  // }
  
   return (
     <div className="rounded-lg drop-shadow-lg bg-white-100 h-[500px]">
@@ -120,40 +98,3 @@ export default function ProductCard({ props, onAddWishClick, onAddBagClick }) {
     </div>
   );
 }
-
-// export default function ProductCard({data}){
-//   return (
-//     <div className="product-card" key={data.id}>
-//       <img src={data.imgUrl} alt={data.name} class="product-img" />
-//       <div className="card-body">
-//         <h5 className="product-title">
-//           {data.class} {data.name}
-//         </h5>
-//         <p className="product-price">$ {data.price}</p>
-//       </div>
-//       <div className="card-quantity">
-//         <button
-//           className="quantity-btn minus cursor-pointer"
-//           id="minus"
-//           onClick={() => onClickMinus(data.id)}
-//         >
-//           -
-//         </button>
-//         <span className="quantity-count">{data.quantity}</span>
-//         <button
-//           className="quantity-btn plus cursor-pointer"
-//           id="plus"
-//           onClick={() => onClickPlus(data.id)}
-//         >
-//           +
-//         </button>
-//       </div>
-//       <div className="card-btn">
-//         <button className="btn default-btn add-cart-btn">Add to Cart</button>
-//         <button className="btn wish-btn">
-//           <Like />
-//         </button>
-//       </div>
-//     </div>
-//   );
-// }

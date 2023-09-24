@@ -1,5 +1,5 @@
 import axios from "axios";
-// https://vue3-course-api.hexschool.io/api/huiyu-cafe-product/admin/products/all
+
 const authToken = localStorage.getItem("token");
 axios.defaults.headers.common["Authorization"] = authToken;
 

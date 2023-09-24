@@ -1,4 +1,3 @@
-import { deleteOneCartProduct } from "../../api/getFrontProductCart";
 
 export default function CartItem({prop, onPlusClick, onMinusClick, onRemoveClick}){
   const product = prop.product

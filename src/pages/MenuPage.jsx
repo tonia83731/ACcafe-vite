@@ -9,7 +9,6 @@ import Swal from "sweetalert2";
 import { useNavigate } from "react-router-dom";
 
 export default function MenuPage({ onAddWishClick, isWish }) {
-  // const [cart, setCart] = useState([])
   const navigate = useNavigate()
   const [cartData, setCartData] = useState([]);
   const [priceData, setPriceData] = useState({

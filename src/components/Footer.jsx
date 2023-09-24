@@ -4,7 +4,6 @@ import SocialMediaLink from "./Others/SocialMediaLink";
 import Subscribe from "./Others/Subscribe";
 import { SuccessTag, ErrorTag } from "./Others/SubscribeNotiTag";
 
-import { Link } from "react-router-dom";
 
 export default function Footer() {
   const [inputValue, setInputValue] = useState("")

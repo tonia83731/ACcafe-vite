@@ -13,33 +13,14 @@ import { NavLink, Link } from "react-router-dom";
 
 import useCartContext from "../hooks/useCartContext";
 import useWishContext from "../hooks/useWishContext";
-import { useState, useEffect } from "react";
-import { getFrontProductCartList } from "../api/getFrontProductCart";
 
-export default function Header({ onRemoveWishClick, onRemoveAllWishClick, props }) {
-  // const [cartData, setCartData] = useState([])
-  // const [cartNum, setCartNum] = useState(0)
+export default function Header({ props }) {
   const cartNum = props?.length
    const info = useCartContext();
    const state = info.state;
   //  const dispatch = info.dispatch;
   const wishInfo = useWishContext();
   const wishState = wishInfo.wishState
-
-  // useEffect(() => {
-  //   const getFrontProductCartListAsync = async () => {
-  //     const res = await getFrontProductCartList()
-  //     const datas = res.data.carts
-  //     // console.log(datas);
-  //     setCartData(datas)
-  //     const datasLength = datas?.length
-  //     setCartNum(datasLength)
-  //     // console.log(cartNum)
-  //   }
-  //   getFrontProductCartListAsync(); 
-  // }, [])
-
-  // console.log(cartData)
   return (
     <header className="sticky top-0 left-0 h-[45px] leading-[45px] bg-olive-100 text-white-100 z-[1] tablet:h-[60px] tablet:leading-[60px]">
       <div className="grid gap-2 grid-cols-9 justify-center items-center h-full breakpoint4:grid-cols-10">

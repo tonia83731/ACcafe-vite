@@ -3,7 +3,7 @@ import ProductCard from "./ProductGrid";
 import ProductList from "./ProductList";
 import Pagination from "../Others/Pagination";
 
-import { dummyProductData } from "../../data/ProductData";
+
 import { getFrontProductList } from "../../api/getFrontProductList";
 
 import { useState, useEffect } from "react";

@@ -1,6 +1,3 @@
-import nextId from "react-id-generator";
-
-
 const newsOptionData = [
   {
     id: "All",

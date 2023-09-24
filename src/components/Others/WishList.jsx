@@ -1,4 +1,4 @@
-import { ReactComponent as Food } from "../../assets/icon/menu/food.svg";
+
 import { ReactComponent as Delete } from "../../assets/icon/nav_icon/delete.svg";
 import useWishContext from "../../hooks/useWishContext";
 import ProductIcon from "../Menu/ProductIcon";

@@ -5,7 +5,6 @@ import Header from "../components/Header";
 import Footer from "../components/Footer";
 import { getFrontNewsList, getFrontOneNewsList } from "../api/getFrontNewsList";
 import { getFrontProductCartList } from "../api/getFrontProductCart";
-import { dummyNewsData } from "../data/NewsData";
 
 import { useState, useEffect } from "react";
 
@@ -19,9 +18,6 @@ export default function NewsPage() {
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPage, setTotalPage] = useState(0)
   const [cartData, setCartData] = useState([]);
-
-  // const totalPage = pageData.total_pages
-  // const numbers = [...Array(totalPage).keys()].map((i) => i + 1);
   
   const newsPerPage = 8;
   const lastIndex = currentPage * newsPerPage;
@@ -45,13 +41,9 @@ export default function NewsPage() {
     }
   }
   const handleNewsModalClick = async (id) => {
-    // const filterContent = dummyNewsData.filter((prop) => prop.id === id)
     const res = await getFrontOneNewsList(id)
     const data = res.data.article
-    // console.log(data);
     setModalContent([data])
-    // console.log(modalContent)
-    // setModalContent(filterContent)
     setModalToggle(true)
   }
   const handleNextClick = () => {

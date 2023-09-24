@@ -1,10 +1,10 @@
-import { dummyProductData } from "../../data/ProductData";
+
 import { GreenBtn } from "../Others/Button";
 import useCartContext from "../../hooks/useCartContext";
 import useWishContext from "../../hooks/useWishContext";
 import ProductIcon from "./ProductIcon";
 import { useState } from "react";
-import { addToCart } from "../../api/getFrontProductCart";
+
 
 export function ProductListItem({ prop, onAddBagClick }) {
   const [inputValue, setInputValue] = useState(0);
@@ -25,28 +25,6 @@ export function ProductListItem({ prop, onAddBagClick }) {
   const handlePlusClick = () => {
     setInputValue(inputValue + 1);
   };
-  // const handleAddBagClick = async (id) => {
-  //   console.log(id);
-  //   console.log(inputValue);
-  //   const product_id = id;
-  //   const quantity = inputValue === 0 ? 1 : inputValue;
-  //   const addData = {
-  //     product_id: product_id,
-  //     qty: quantity,
-  //   };
-
-  //   try {
-  //     const data = await addToCart({
-  //       data: addData,
-  //     });
-  //     if (data.success) {
-  //       setInputValue(0);
-  //     }
-  //     // console.log(data)
-  //   } catch (error) {
-  //     console.error(error);
-  //   }
-  // };
 
   return (
     <div className="grid gap-4 grid-cols-5 items-center border-b-2 border-grullo-60 px-2 py-1 hover:bg-black-5">

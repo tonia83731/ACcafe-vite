@@ -1,4 +1,4 @@
-import { dummyNewsData } from "../../data/NewsData";
+
 import Pagination from "../Others/Pagination";
 import convertNumberToTime from "../../utilites/convertNumberToTime";
 
