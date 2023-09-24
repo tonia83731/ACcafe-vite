@@ -15,10 +15,13 @@ export default function CartItem({prop, onPlusClick, onMinusClick, onRemoveClick
     <div className="flex justify-between items-center border-b-2 border-grullo-60 py-2 px-1">
       <div className="">
         <div className="text-lg">{product.title}</div>
-        <div className="flex justify-between items-center">
+        <div className="grid gap-1 grid-cols-4 items-center">
           <div className="">${product.price}</div>
-          <div className="w-2/4">
-            <button className="text-lg" onClick={onMinusClick}>
+          <div className="w-full flex justify-center">
+            <button
+              className="text-lg"
+              onClick={() => onMinusClick?.(product.id)}
+            >
               -
             </button>
             <input
@@ -28,12 +31,14 @@ export default function CartItem({prop, onPlusClick, onMinusClick, onRemoveClick
               value={prop.qty}
               disabled
             />
-
-            <button className="text-lg" onClick={onPlusClick}>
+            <button
+              className="text-lg"
+              onClick={() => onPlusClick?.(product.id)}
+            >
               +
             </button>
           </div>
-          <div className="">${prop.final_total}</div>
+          <div className="flex justify-center col-span-2">${prop.final_total}</div>
         </div>
       </div>
       <button
