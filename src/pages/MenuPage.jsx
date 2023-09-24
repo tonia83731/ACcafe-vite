@@ -7,10 +7,16 @@ import { getFrontProductCartList, deleteOneCartProduct } from "../api/getFrontPr
 import { addToCart } from "../api/getFrontProductCart";
 import { payOrder } from "../api/payOrder";
 import Swal from "sweetalert2";
+import { useNavigate } from "react-router-dom";
 
 export default function MenuPage({ onAddWishClick, isWish }) {
+  // const [cart, setCart] = useState([])
+  const navigate = useNavigate()
   const [cartData, setCartData] = useState([]);
-  const [priceData, setPriceData] = useState([])
+  const [priceData, setPriceData] = useState({
+    total: 0,
+    final_total: 0,
+  });
   const [formData, setFormData] = useState({
     name: "",
     tel: "",
@@ -18,8 +24,6 @@ export default function MenuPage({ onAddWishClick, isWish }) {
     address: "",
   });
   const handleAddToBagCick = async (id, value) => {
-    // console.log(id)
-    // console.log(value)
     const product_id = id
     const quantity = value === 0 ? 1 : value
     const addData = {
@@ -31,23 +35,35 @@ export default function MenuPage({ onAddWishClick, isWish }) {
       const data = await addToCart({
         data: addData
       })
-      console.log(data)
       setCartData((prev) => {
         return [
           ...prev,
           data.data
         ]
       })
-      
+      const res = await getFrontProductCartList();
+      const total = res.data.total;
+      const final_total = res.data.final_total;
+      setPriceData({
+        total: total,
+        final_total: final_total,
+      });     
     } catch (error) {
       console.error(error)
     }
   }
   const handleRemoveClick = async (id) => {
-    console.log(id)
     try {
-      await deleteOneCartProduct(id)
+      const data = await deleteOneCartProduct(id)
+      console.log(data)
       setCartData((prevData) => prevData.filter((data) => data.id !== id));
+      const res = await getFrontProductCartList();
+      const total = res.data.total;
+      const final_total = res.data.final_total;
+      setPriceData({
+        total: total,
+        final_total: final_total,
+      });  
     } catch (error) {
       console.error(error)
     }
@@ -59,7 +75,6 @@ export default function MenuPage({ onAddWishClick, isWish }) {
   };
   const handleCartSubmit = async (e) => {
     e.preventDefault();
-    // if (state.length === 0) return;
     const res = await payOrder({
       data: {user: formData}
     })
@@ -76,24 +91,25 @@ export default function MenuPage({ onAddWishClick, isWish }) {
         email: "",
         address: "",
       });
-      setCartData([])
+      navigate("/ACcafe-vite/");
     }
   };
-  console.log(formData)
-  // console.log(priceData);
   useEffect(() => {
     const getFrontProductCartListAsync = async () => {
       const res = await getFrontProductCartList();
       const datas = res.data.carts;
-      const price = res.data
-      // console.log(datas);
+      const total = res.data.total
+      const final_total = res.data.final_total
       setCartData(datas);
-      setPriceData(price)
+      setPriceData({
+        total: total,
+        final_total: final_total
+      })
+      setCart(res.data)
     };
     getFrontProductCartListAsync();
   }, []);
-  // console.log(cartData)
-  // console.log(priceData)
+
   return (
     <>
       <Header props={cartData}/>

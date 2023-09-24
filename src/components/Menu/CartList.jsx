@@ -5,6 +5,7 @@ export default function CartList({ props, onPlusClick, onMinusClick, onRemoveCli
   const info = useCartContext();
   // const state = info.state;
   const dispatch = info.dispatch;
+  // console.log(props)
   return (
     <div className="w-full h-[450px] overflow-y-auto">
       {props.map((prop) => {
