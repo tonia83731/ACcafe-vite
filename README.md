@@ -87,6 +87,7 @@ https://tonia83731.github.io/ACcafe-vite/
 * tailwind @3.3.3
 * sweetalert2 @11.7.20
 * vite-plugin-svgr @3.2.0
+* axios @1.5.0
 
 ## Getting Start
 
