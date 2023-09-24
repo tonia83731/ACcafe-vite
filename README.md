@@ -118,7 +118,8 @@ ctrl + c
 
 This is for future development, will not include in current project
 
-* User can storage their wishlist and baglist and save for next open
+* User can storage their wishlist save for next open
+* User can make the payment and backstage will update status
 
 
 
